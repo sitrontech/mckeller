@@ -1,0 +1,1325 @@
+--
+-- PostgreSQL database dump
+--
+
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
+
+SET statement_timeout = 0;
+SET lock_timeout = 0;
+SET client_encoding = 'UTF8';
+SET standard_conforming_strings = on;
+SET check_function_bodies = false;
+SET client_min_messages = warning;
+SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: 
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: 
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+SET search_path = public, pg_catalog;
+
+SET default_tablespace = '';
+
+SET default_with_oids = false;
+
+--
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE ar_internal_metadata (
+    key character varying NOT NULL,
+    value character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE ar_internal_metadata OWNER TO "ToeyHom";
+
+--
+-- Name: cama_comments; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_comments (
+    id integer NOT NULL,
+    author character varying,
+    author_email character varying,
+    author_url character varying,
+    "author_IP" character varying,
+    content text,
+    approved character varying DEFAULT 'pending'::character varying,
+    agent character varying,
+    typee character varying,
+    comment_parent integer,
+    post_id integer,
+    user_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+ALTER TABLE cama_comments OWNER TO "ToeyHom";
+
+--
+-- Name: cama_comments_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_comments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_comments_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_comments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_comments_id_seq OWNED BY cama_comments.id;
+
+
+--
+-- Name: cama_custom_fields; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_custom_fields (
+    id integer NOT NULL,
+    object_class character varying,
+    name character varying,
+    slug character varying,
+    objectid integer,
+    parent_id integer,
+    field_order integer,
+    count integer DEFAULT 0,
+    is_repeat boolean DEFAULT false,
+    description text,
+    status character varying
+);
+
+
+ALTER TABLE cama_custom_fields OWNER TO "ToeyHom";
+
+--
+-- Name: cama_custom_fields_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_custom_fields_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_custom_fields_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_custom_fields_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_custom_fields_id_seq OWNED BY cama_custom_fields.id;
+
+
+--
+-- Name: cama_custom_fields_relationships; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_custom_fields_relationships (
+    id integer NOT NULL,
+    objectid integer,
+    custom_field_id integer,
+    term_order integer,
+    object_class character varying,
+    value text,
+    custom_field_slug character varying,
+    group_number integer DEFAULT 0
+);
+
+
+ALTER TABLE cama_custom_fields_relationships OWNER TO "ToeyHom";
+
+--
+-- Name: cama_custom_fields_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_custom_fields_relationships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_custom_fields_relationships_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_custom_fields_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_custom_fields_relationships_id_seq OWNED BY cama_custom_fields_relationships.id;
+
+
+--
+-- Name: cama_metas; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_metas (
+    id integer NOT NULL,
+    key character varying,
+    value text,
+    objectid integer,
+    object_class character varying
+);
+
+
+ALTER TABLE cama_metas OWNER TO "ToeyHom";
+
+--
+-- Name: cama_metas_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_metas_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_metas_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_metas_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_metas_id_seq OWNED BY cama_metas.id;
+
+
+--
+-- Name: cama_posts; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_posts (
+    id integer NOT NULL,
+    title character varying,
+    slug character varying,
+    content text,
+    content_filtered text,
+    status character varying DEFAULT 'published'::character varying,
+    published_at timestamp without time zone,
+    post_parent integer,
+    visibility character varying DEFAULT 'public'::character varying,
+    visibility_value text,
+    post_class character varying DEFAULT 'Post'::character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer,
+    post_order integer DEFAULT 0,
+    taxonomy_id integer,
+    is_feature boolean DEFAULT false
+);
+
+
+ALTER TABLE cama_posts OWNER TO "ToeyHom";
+
+--
+-- Name: cama_posts_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_posts_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_posts_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_posts_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_posts_id_seq OWNED BY cama_posts.id;
+
+
+--
+-- Name: cama_term_relationships; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_term_relationships (
+    id integer NOT NULL,
+    objectid integer,
+    term_order integer,
+    term_taxonomy_id integer
+);
+
+
+ALTER TABLE cama_term_relationships OWNER TO "ToeyHom";
+
+--
+-- Name: cama_term_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_term_relationships_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_term_relationships_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_term_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_term_relationships_id_seq OWNED BY cama_term_relationships.id;
+
+
+--
+-- Name: cama_term_taxonomy; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_term_taxonomy (
+    id integer NOT NULL,
+    taxonomy character varying,
+    description text,
+    parent_id integer,
+    count integer,
+    name character varying,
+    slug character varying,
+    term_group integer,
+    term_order integer,
+    status character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id integer
+);
+
+
+ALTER TABLE cama_term_taxonomy OWNER TO "ToeyHom";
+
+--
+-- Name: cama_term_taxonomy_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_term_taxonomy_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_term_taxonomy_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_term_taxonomy_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_term_taxonomy_id_seq OWNED BY cama_term_taxonomy.id;
+
+
+--
+-- Name: cama_users; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE cama_users (
+    id integer NOT NULL,
+    username character varying,
+    role character varying DEFAULT 'client'::character varying,
+    email character varying,
+    slug character varying,
+    password_digest character varying,
+    auth_token character varying,
+    password_reset_token character varying,
+    parent_id integer,
+    password_reset_sent_at timestamp without time zone,
+    last_login_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    site_id integer DEFAULT '-1'::integer,
+    confirm_email_token character varying,
+    confirm_email_sent_at timestamp without time zone,
+    is_valid_email boolean DEFAULT true,
+    first_name character varying,
+    last_name character varying
+);
+
+
+ALTER TABLE cama_users OWNER TO "ToeyHom";
+
+--
+-- Name: cama_users_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE cama_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE cama_users_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: cama_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE cama_users_id_seq OWNED BY cama_users.id;
+
+
+--
+-- Name: plugins_attacks; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE plugins_attacks (
+    id integer NOT NULL,
+    path character varying,
+    browser_key character varying,
+    site_id integer,
+    created_at timestamp without time zone
+);
+
+
+ALTER TABLE plugins_attacks OWNER TO "ToeyHom";
+
+--
+-- Name: plugins_attacks_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE plugins_attacks_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE plugins_attacks_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: plugins_attacks_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE plugins_attacks_id_seq OWNED BY plugins_attacks.id;
+
+
+--
+-- Name: plugins_contact_forms; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE plugins_contact_forms (
+    id integer NOT NULL,
+    site_id integer,
+    count integer,
+    parent_id integer,
+    name character varying,
+    slug character varying,
+    description text,
+    value text,
+    settings text,
+    created_at timestamp without time zone,
+    updated_at timestamp without time zone
+);
+
+
+ALTER TABLE plugins_contact_forms OWNER TO "ToeyHom";
+
+--
+-- Name: plugins_contact_forms_id_seq; Type: SEQUENCE; Schema: public; Owner: ToeyHom
+--
+
+CREATE SEQUENCE plugins_contact_forms_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+ALTER TABLE plugins_contact_forms_id_seq OWNER TO "ToeyHom";
+
+--
+-- Name: plugins_contact_forms_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: ToeyHom
+--
+
+ALTER SEQUENCE plugins_contact_forms_id_seq OWNED BY plugins_contact_forms.id;
+
+
+--
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: ToeyHom
+--
+
+CREATE TABLE schema_migrations (
+    version character varying NOT NULL
+);
+
+
+ALTER TABLE schema_migrations OWNER TO "ToeyHom";
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_comments ALTER COLUMN id SET DEFAULT nextval('cama_comments_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_custom_fields ALTER COLUMN id SET DEFAULT nextval('cama_custom_fields_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_custom_fields_relationships ALTER COLUMN id SET DEFAULT nextval('cama_custom_fields_relationships_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_metas ALTER COLUMN id SET DEFAULT nextval('cama_metas_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_posts ALTER COLUMN id SET DEFAULT nextval('cama_posts_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_term_relationships ALTER COLUMN id SET DEFAULT nextval('cama_term_relationships_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_term_taxonomy ALTER COLUMN id SET DEFAULT nextval('cama_term_taxonomy_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_users ALTER COLUMN id SET DEFAULT nextval('cama_users_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY plugins_attacks ALTER COLUMN id SET DEFAULT nextval('plugins_attacks_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY plugins_contact_forms ALTER COLUMN id SET DEFAULT nextval('plugins_contact_forms_id_seq'::regclass);
+
+
+--
+-- Data for Name: ar_internal_metadata; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY ar_internal_metadata (key, value, created_at, updated_at) FROM stdin;
+environment	development	2017-06-03 09:21:20.232346	2017-06-03 09:21:20.232346
+\.
+
+
+--
+-- Data for Name: cama_comments; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_comments (id, author, author_email, author_url, "author_IP", content, approved, agent, typee, comment_parent, post_id, user_id, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: cama_comments_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_comments_id_seq', 1, false);
+
+
+--
+-- Data for Name: cama_custom_fields; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_custom_fields (id, object_class, name, slug, objectid, parent_id, field_order, count, is_repeat, description, status) FROM stdin;
+\.
+
+
+--
+-- Name: cama_custom_fields_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_custom_fields_id_seq', 1, false);
+
+
+--
+-- Data for Name: cama_custom_fields_relationships; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_custom_fields_relationships (id, objectid, custom_field_id, term_order, object_class, value, custom_field_slug, group_number) FROM stdin;
+\.
+
+
+--
+-- Name: cama_custom_fields_relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_custom_fields_relationships_id_seq', 1, false);
+
+
+--
+-- Data for Name: cama_metas; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_metas (id, key, value, objectid, object_class) FROM stdin;
+1	_default	{"has_category":true,"has_tags":true,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":true,"has_layout":false,"default_layout":""}	2	PostType
+3	_manager_1	{"media":1,"comments":1,"themes":1,"widgets":1,"nav_menu":1,"plugins":1,"users":1,"settings":1,"theme_settings":1}	3	UserRole
+6	_default	{"not_deleted":true}	6	Category
+7	_default	{"has_category":false,"has_tags":false,"has_summary":false,"has_content":true,"has_comments":false,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":true,"has_layout":true,"default_layout":""}	7	PostType
+2	_post_type_1	{"edit":[2,7,18,19,20,21,22,23],"edit_other":[2,7,18,19,20,21,22,23],"edit_publish":[2,7,18,19,20,21,22,23],"publish":[2,7,18,19,20,21,22,23],"delete":[2,7,18,19,20,21,22,23],"delete_other":[2,7,18,19,20,21,22,23],"delete_publish":[2,7,18,19,20,21,22,23],"manage_categories":[2,7,18,19,20,21,22,23],"manage_tags":[2,7,18,19,20,21,22,23]}	3	UserRole
+4	_post_type_1	{"edit":[2,7,18,19,20,21,22,23],"edit_other":[2,7,18,19,20,21,22,23],"edit_publish":[2,7,18,19,20,21,22,23],"publish":[2,7,18,19,20,21,22,23],"delete":[2,7,18,19,20,21,22,23],"delete_other":[2,7,18,19,20,21,22,23],"delete_publish":[2,7,18,19,20,21,22,23],"manage_categories":[2,7,18,19,20,21,22,23],"manage_tags":[2,7,18,19,20,21,22,23]}	4	UserRole
+5	_post_type_1	{"edit":[2,7,18,19,20,21,22,23]}	5	UserRole
+8	_post_type_1	{}	11	UserRole
+9	_manager_1	{}	11	UserRole
+10	_default	{"version_installed":0.1}	12	Plugin
+11	front_cache_elements	{"paths":[],"posts":[],"post_types":[7],"skip_posts":[],"home":true,"cache_login":true}	1	Site
+12	_default	{"version_installed":"0.0.24"}	13	Plugin
+13	_default	{"version_installed":0.1}	14	Plugin
+14	attack_config	{"get":{"sec":20,"max":10},"post":{"sec":20,"max":5},"msg":"Requests Limit exceeded!","ban":5,"cleared":"2017-06-03T16:21:51.717+07:00"}	1	Site
+15	_default	{"version_installed":1.4}	15	Plugin
+22	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":false,"default_layout":"","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	22	PostType
+17	date_notified_message		1	Site
+16	_default	{"_theme":"gbctheme","date_notified":"2017-06-03","save_intro":true,"logo":"http://localhost:3000/media/1/new_logo_for_web_1.png","icon":"","home_page":"","error_404":"","maintenance_ips":"","front_per_page":10,"admin_per_page":10,"comment_status":"pending","permit_anonimos_comment":"","permit_create_account":"","security_captcha_user_register":"","need_validate_email":"","custom_fields_show_shortcodes":"","seo_description":"","keywords":"","seo_author":"","twitter_card":"","screenshot":"","email_from":"","email_cc":"","mailer_enabled":0,"filesystem_type":"local","filesystem_max_size":100,"filesystem_thumb_size":"100x100","file_actions_in_modals":"no","refresh_cache":false,"_admin_theme":"en"}	1	Site
+19	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":false,"default_layout":"","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	19	PostType
+23	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":false,"default_layout":"","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	23	PostType
+24	_default	{"status_default":"published"}	1	Post
+25	_default	{"status_default":"published"}	2	Post
+18	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":true,"default_layout":"index","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	18	PostType
+20	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":true,"default_layout":"","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	20	PostType
+21	_default	{"has_category":false,"has_tags":false,"has_summary":true,"has_content":true,"has_comments":true,"has_picture":true,"has_template":true,"has_seo":true,"not_deleted":false,"has_layout":false,"default_layout":"","icon":"","default_template":"","has_featured":false,"has_parent_structure":false,"posts_image_dimension":"","posts_thumb_versions":"","posts_thumb_size":"","is_required_picture":false,"contents_route_format":"post","default_thumb":""}	21	PostType
+26	cama_media_cache	{"/":{"files":{"2b.jpg":{"name":"2b.jpg","key":"/2b.jpg","url":"http://localhost:3000/media/1/2b.jpg","is_folder":false,"size":215708.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/2b-jpg.jpg","type":"","created_at":"2017-05-27T18:22:06.000+07:00","dimension":"620x350"},"4b.jpg":{"name":"4b.jpg","key":"/4b.jpg","url":"http://localhost:3000/media/1/4b.jpg","is_folder":false,"size":198626.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/4b-jpg.jpg","type":"","created_at":"2017-05-29T00:06:16.000+07:00","dimension":"620x350"},"about_key.jpg":{"name":"about_key.jpg","key":"/about_key.jpg","url":"http://localhost:3000/media/1/about_key.jpg","is_folder":false,"size":102891.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/about_key-jpg.jpg","type":"","created_at":"2017-05-28T22:08:50.000+07:00","dimension":"1600x250"},"d99brmry-1378877624.jpg":{"name":"d99brmry-1378877624.jpg","key":"/d99brmry-1378877624.jpg","url":"http://localhost:3000/media/1/d99brmry-1378877624.jpg","is_folder":false,"size":39087.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/d99brmry-1378877624-jpg.jpg","type":"","created_at":"2017-05-27T17:34:27.000+07:00","dimension":"524x524"},"d99brmry-1378877624_1.jpg":{"name":"d99brmry-1378877624_1.jpg","key":"/d99brmry-1378877624_1.jpg","url":"http://localhost:3000/media/1/d99brmry-1378877624_1.jpg","is_folder":false,"size":59329.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/d99brmry-1378877624_1-jpg.jpg","type":"","created_at":"2017-05-27T17:35:02.000+07:00","dimension":"509x499"},"elevated-city-view-at-dusk-bangkok-thailand-fdj5gf.jpg":{"name":"elevated-city-view-at-dusk-bangkok-thailand-fdj5gf.jpg","key":"/elevated-city-view-at-dusk-bangkok-thailand-fdj5gf.jpg","url":"http://localhost:3000/media/1/elevated-city-view-at-dusk-bangkok-thailand-fdj5gf.jpg","is_folder":false,"size":270527.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/elevated-city-view-at-dusk-bangkok-thailand-fdj5gf-jpg.jpg","type":"","created_at":"2017-05-27T18:29:30.000+07:00","dimension":"1300x956"},"favicon.ico":{"name":"favicon.ico","key":"/favicon.ico","url":"http://localhost:3000/media/1/favicon.ico","is_folder":false,"size":1150.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/favicon-ico.ico","type":"","created_at":"2017-05-27T19:12:53.000+07:00","dimension":"16x16"},"key_map.png":{"name":"key_map.png","key":"/key_map.png","url":"http://localhost:3000/media/1/key_map.png","is_folder":false,"size":56322.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/key_map-png.png","type":"","created_at":"2017-05-27T22:25:11.000+07:00","dimension":"904x423"},"logo.png":{"name":"logo.png","key":"/logo.png","url":"http://localhost:3000/media/1/logo.png","is_folder":false,"size":5538.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/logo-png.png","type":"","created_at":"2017-05-26T23:38:34.000+07:00","dimension":"321x66"},"logo_blue.png":{"name":"logo_blue.png","key":"/logo_blue.png","url":"http://localhost:3000/media/1/logo_blue.png","is_folder":false,"size":5660.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/logo_blue-png.png","type":"","created_at":"2017-06-03T09:18:00.000+07:00","dimension":"321x66"},"manufacturing-jobs-1.jpg":{"name":"manufacturing-jobs-1.jpg","key":"/manufacturing-jobs-1.jpg","url":"http://localhost:3000/media/1/manufacturing-jobs-1.jpg","is_folder":false,"size":69683.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/manufacturing-jobs-1-jpg.jpg","type":"","created_at":"2017-05-29T00:06:40.000+07:00","dimension":"1000x726"},"new_logo_for_web.png":{"name":"new_logo_for_web.png","key":"/new_logo_for_web.png","url":"http://localhost:3000/media/1/new_logo_for_web.png","is_folder":false,"size":16600.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/new_logo_for_web-png.png","type":"","created_at":"2017-06-03T10:52:08.000+07:00","dimension":"1984x595"},"new_logo_for_web_1.png":{"name":"new_logo_for_web_1.png","key":"/new_logo_for_web_1.png","url":"http://localhost:3000/media/1/new_logo_for_web_1.png","is_folder":false,"size":15206.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/new_logo_for_web_1-png.png","type":"","created_at":"2017-06-03T10:53:44.000+07:00","dimension":"1702x393"},"popkey_sorakrit.png":{"name":"popkey_sorakrit.png","key":"/popkey_sorakrit.png","url":"http://localhost:3000/media/1/popkey_sorakrit.png","is_folder":false,"size":116414.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/popkey_sorakrit-png.png","type":"","created_at":"2017-05-28T22:28:30.000+07:00","dimension":"547x533"},"screen-shot-2560-05-26-at-11-53-53-pm.png":{"name":"screen-shot-2560-05-26-at-11-53-53-pm.png","key":"/screen-shot-2560-05-26-at-11-53-53-pm.png","url":"http://localhost:3000/media/1/screen-shot-2560-05-26-at-11-53-53-pm.png","is_folder":false,"size":1466594.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/screen-shot-2560-05-26-at-11-53-53-pm-png.png","type":"","created_at":"2017-05-26T23:54:19.000+07:00","dimension":"1244x700"},"service.jpg":{"name":"service.jpg","key":"/service.jpg","url":"http://localhost:3000/media/1/service.jpg","is_folder":false,"size":352453.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/service-jpg.jpg","type":"","created_at":"2017-05-27T18:27:26.000+07:00","dimension":"1600x250"},"stock-photo-modern-city-view-of-bangkok-thailand-cityscape-120181804.jpg":{"name":"stock-photo-modern-city-view-of-bangkok-thailand-cityscape-120181804.jpg","key":"/stock-photo-modern-city-view-of-bangkok-thailand-cityscape-120181804.jpg","url":"http://localhost:3000/media/1/stock-photo-modern-city-view-of-bangkok-thailand-cityscape-120181804.jpg","is_folder":false,"size":890846.0,"format":"image","deleteUrl":"","thumb":"http://localhost:3000/media/1/thumb/stock-photo-modern-city-view-of-bangkok-thailand-cityscape-120181804-jpg.jpg","type":"","created_at":"2017-05-27T18:31:30.000+07:00","dimension":"1500x1096"}},"folders":{}}}	1	Site
+27	languages_site	["en","th"]	1	Site
+33	slug	head-office,	4	Post
+34	summary		4	Post
+35	template		4	Post
+36	has_comments	1	4	Post
+37	thumb		4	Post
+38	_default	{"seo_title":"","keywords":"","seo_description":"","seo_author":"","seo_image":""}	4	Post
+45	slug	company-profile,company-profile	6	Post
+46	summary		6	Post
+48	layout	index	6	Post
+49	has_comments	1	6	Post
+50	thumb	http://localhost:3000/media/1/service.jpg	6	Post
+51	_default	{"seo_title":"","keywords":"","seo_description":"","seo_author":"","seo_image":""}	6	Post
+58	slug	our-mission,our-mission	8	Post
+59	summary	<!--:en-->McKeller is to maximise clients' benefit by providing professional and practical consulting service.<!--:--><!--:th-->McKeller is to maximise clients' benefit by providing professional and practical consulting service.<!--:-->	8	Post
+60	template		8	Post
+61	layout	index	8	Post
+62	has_comments	1	8	Post
+63	thumb		8	Post
+64	_default	{"seo_title":"","keywords":"","seo_description":"","seo_author":"","seo_image":""}	8	Post
+71	slug	key-personnel,key-personnel	10	Post
+72	summary		10	Post
+74	layout	index	10	Post
+75	has_comments	1	10	Post
+76	thumb		10	Post
+77	_default	{"seo_title":"","keywords":"","seo_description":"","seo_author":"","seo_image":""}	10	Post
+73	template	template_submenu_aboutus	10	Post
+85	slug	our-ceo,our-ceo	12	Post
+86	summary		12	Post
+87	template	template_submenu_aboutus	12	Post
+88	layout	index	12	Post
+89	has_comments	1	12	Post
+90	thumb		12	Post
+91	_default	{"seo_title":"","keywords":"","seo_description":"","seo_author":"","seo_image":""}	12	Post
+93	installed_at	2017-06-03 10:12:11 UTC	31	Theme
+47	template	template_company	6	Post
+92	visits	4	12	Post
+78	visits	8	10	Post
+\.
+
+
+--
+-- Name: cama_metas_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_metas_id_seq', 93, true);
+
+
+--
+-- Data for Name: cama_posts; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_posts (id, title, slug, content, content_filtered, status, published_at, post_parent, visibility, visibility_value, post_class, created_at, updated_at, user_id, post_order, taxonomy_id, is_feature) FROM stdin;
+1	Sample Post	sample-post	<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra ut augue in posuere. Nulla non malesuada dui. Sed egestas tortor ut purus tempor sodales. Duis non sollicitudin nulla, quis mollis neque. Integer sit amet augue ac neque varius auctor. Vestibulum malesuada leo leo, at semper libero efficitur nec. Etiam semper nisi ac nisi ullamcorper, sed tincidunt purus elementum. Mauris ac congue nibh. Quisque pretium eget leo nec suscipit. </p> <p> Vestibulum ultrices orci ut congue interdum. Morbi dolor nunc, imperdiet vel risus semper, tempor dapibus urna. Phasellus luctus pharetra enim quis volutpat. Integer tristique urna nec malesuada ullamcorper. Curabitur dictum, lectus id ultrices rhoncus, ante neque auctor erat, ut sodales nisi odio sit amet lorem. In hac habitasse platea dictumst. Quisque orci orci, hendrerit at luctus tristique, lobortis in diam. Curabitur ligula enim, rhoncus ut vestibulum a, consequat sit amet nisi. Aliquam bibendum fringilla ultrices. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In justo mi, congue in rhoncus lobortis, facilisis in est. Nam et rhoncus purus. </p> <p> Sed sagittis auctor lectus at rutrum. Morbi ultricies felis mi, ut scelerisque augue facilisis eu. In molestie quam ex. Quisque ut sapien sed odio tempus imperdiet. In id accumsan massa. Morbi quis nunc ullamcorper, interdum enim eu, finibus purus. Vestibulum ac fermentum augue, at tempus ante. Aliquam ultrices, purus ut porttitor gravida, dui augue dignissim massa, ac tempor ante dolor at arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse placerat risus est, eget varius mi ultricies in. Duis non odio ut felis dapibus eleifend. In fringilla enim lobortis placerat efficitur. </p> <p> Nulla sodales faucibus urna, quis viverra dolor facilisis sollicitudin. Aenean ac egestas nibh. Nam non tortor eget nibh scelerisque fermentum. Etiam ornare, nunc ut luctus mollis, ante dolor consectetur augue, non scelerisque odio est a nulla. Nullam cursus egestas nulla, nec commodo nibh suscipit ut. Mauris ut felis sem. Aenean at mi at nisi dictum blandit sit amet at erat. Etiam eget lobortis tellus. Curabitur in commodo arcu, at vehicula tortor. </p>	Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer pharetra ut augue in posuere. Nulla non malesuada dui. Sed egestas tortor ut purus tempor sodales. Duis non sollicitudin nulla, quis mollis neque. Integer sit amet augue ac neque varius auctor. Vestibulum malesuada leo leo, at semper libero efficitur nec. Etiam semper nisi ac nisi ullamcorper, sed tincidunt purus elementum. Mauris ac congue nibh. Quisque pretium eget leo nec suscipit.   Vestibulum ultrices orci ut congue interdum. Morbi dolor nunc, imperdiet vel risus semper, tempor dapibus urna. Phasellus luctus pharetra enim quis volutpat. Integer tristique urna nec malesuada ullamcorper. Curabitur dictum, lectus id ultrices rhoncus, ante neque auctor erat, ut sodales nisi odio sit amet lorem. In hac habitasse platea dictumst. Quisque orci orci, hendrerit at luctus tristique, lobortis in diam. Curabitur ligula enim, rhoncus ut vestibulum a, consequat sit amet nisi. Aliquam bibendum fringilla ultrices. Aliquam erat volutpat. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; In justo mi, congue in rhoncus lobortis, facilisis in est. Nam et rhoncus purus.   Sed sagittis auctor lectus at rutrum. Morbi ultricies felis mi, ut scelerisque augue facilisis eu. In molestie quam ex. Quisque ut sapien sed odio tempus imperdiet. In id accumsan massa. Morbi quis nunc ullamcorper, interdum enim eu, finibus purus. Vestibulum ac fermentum augue, at tempus ante. Aliquam ultrices, purus ut porttitor gravida, dui augue dignissim massa, ac tempor ante dolor at arcu. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Suspendisse placerat risus est, eget varius mi ultricies in. Duis non odio ut felis dapibus eleifend. In fringilla enim lobortis placerat efficitur.   Nulla sodales faucibus urna, quis viverra dolor facilisis sollicitudin. Aenean ac egestas nibh. Nam non tortor eget nibh scelerisque fermentum. Etiam ornare, nunc ut luctus mollis, ante dolor consectetur augue, non scelerisque odio est a nulla. Nullam cursus egestas nulla, nec commodo nibh suscipit ut. Mauris ut felis sem. Aenean at mi at nisi dictum blandit sit amet at erat. Etiam eget lobortis tellus. Curabitur in commodo arcu, at vehicula tortor. 	trash	\N	\N	public	\N	Post	2017-06-03 09:21:50.592792	2017-06-03 09:21:50.592792	1	1	2	f
+2	Welcome	welcome	<p style='text-align: center;'><img width='155' height='155' src='http://camaleon.tuzitio.com/media/132/logo2.png' alt='logo' /></p><p><strong>Camaleon CMS</strong>&nbsp;is a free and open-source tool and a fexible content management system (CMS) based on <a href='http://rubyonrails.org'>Ruby on Rails 4</a>&nbsp;and MySQL.&nbsp;</p> <p>With Camaleon you can do the following:</p> <ul> <li>Create instantly a lot of sites&nbsp;in the same installation</li> <li>Manage your content information in several languages</li> <li>Extend current functionality by&nbsp;plugins (MVC structure and no more echo or prints anywhere)</li> <li>Create or install different themes for each site</li> <li>Create your own structure without coding anything (adapt Camaleon as you want&nbsp;and not you for Camaleon)</li> <li>Create your store and start to sell your products using our plugins</li> <li>Avoid web attacks</li> <li>Compare the speed and enjoy the speed of your new Camaleon site</li> <li>Customize or create your themes for mobile support</li> <li>Support&nbsp;more visitors at the same time</li> <li>Manage your information with a panel like wordpress&nbsp;</li> <li>All urls are oriented for SEO</li> <li>Multiples roles of users</li> </ul>	Camaleon CMS is a free and open-source tool and a fexible content management system (CMS) based on Ruby on Rails 4 and MySQL.  With Camaleon you can do the following:  Create instantly a lot of sites in the same installation Manage your content information in several languages Extend current functionality by plugins (MVC structure and no more echo or prints anywhere) Create or install different themes for each site Create your own structure without coding anything (adapt Camaleon as you want and not you for Camaleon) Create your store and start to sell your products using our plugins Avoid web attacks Compare the speed and enjoy the speed of your new Camaleon site Customize or create your themes for mobile support Support more visitors at the same time Manage your information with a panel like wordpress  All urls are oriented for SEO Multiples roles of users 	trash	\N	\N	public	\N	Post	2017-06-03 09:21:50.710491	2017-06-03 09:21:50.710491	1	1	7	f
+4	<!--:en-->Head Office<!--:--><!--:th-->สำนักงานใหญ่<!--:-->	<!--:en-->head-office<!--:--><!--:th--><!--:-->	<!--:en--><p>29/47 Prasert-Manukitch Road, Nuanchan Subdistrict, Buengkum District, Bangkok 10230</p>\r\n<p>Tel : +66 (0) 2509 2054<br />Fax : +66 (0) 2509 2055<br />E-Mail : info@mckeller.co.th</p><!--:--><!--:th--><p>29/47 ถนนประเสริฐมนูกิจ แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230</p>\r\n<p>โทร : +66 (0) 2509 2054<br />แฟกซ์ : +66 (0) 2509 2055<br />อีเมล์ : info@mckeller.co.th</p><!--:-->	<!--:en-->29/47 Prasert-Manukitch Road, Nuanchan Subdistrict, Buengkum District, Bangkok 10230 Tel : +66 (0) 2509 2054Fax : +66 (0) 2509 2055E-Mail : info@mckeller.co.th<!--:--><!--:th-->29/47 ถนนประเสริฐมนูกิจ แขวงนวลจันทร์ เขตบึงกุ่ม กรุงเทพมหานคร 10230 โทร : +66 (0) 2509 2054แฟกซ์ : +66 (0) 2509 2055อีเมล์ : info@mckeller.co.th<!--:-->	published	\N	\N	public	\N	Post	2017-06-03 09:34:07.634843	2017-06-03 09:34:07.634843	1	1	23	f
+6	<!--:en-->Company Profile<!--:--><!--:th-->ข้อมูลบริษัท<!--:-->	<!--:en-->company-profile<!--:--><!--:th-->company-profile<!--:-->	<!--:en--><h2><span>Introduction</span></h2>\r\n<p><span>Mckeller is a construction project management consulting firm that provides professional services in project management, construction management, construction supervision, cost consultancy and technical consultancy for construction projects in all industries regardless of size and scope from concept to project closeout.</span></p>\r\n<h2>PHILOSOPHY</h2>\r\n<p><span>What differentiate Mckeller from other consultants is the fact that we provide professional and creative services that are specifically tailored to meet the needs of individual client.&nbsp; At Mckeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situations of each client. Moreover, we also specialize in pre-fabricated construction technology, providing the clients who are interested to significantly reduce in the project duration. Therefore, through our professional management, all projects will comply with schedule, budget, scope and client&rsquo;s demand.</span></p><!--:--><!--:th--><h2>บทนำ</h2>\r\n<p><strong>บริษัท แมคเคลเลอร์ จำกัด </strong><span>ให้บริการด้านที่ปรึกษาการบริหารโครงการก่อสร้าง บริการของบริษัทฯประกอบไปด้วย บริการบริหารโครงการ บริการบริหารงานก่อสร้าง บริการควบคุมงานก่อสร้าง บริการที่ปรึกษาด้านต้นทุนการก่อสร้าง และบริการที่ปรึกษาทางด้านเทคนิค สำหรับโครงการก่อสร้างทุกประเภท โดยไม่จำกัดขนาดและขอบเขต โดยทางบริษัทฯจะช่วยลูกค้าในการบริหารงาน เริ่มตั้งแต่ขั้นตอนการวางกรอบความคิดไปจนสิ้นสุดโครงการ</span></p>\r\n<p><span></span></p>\r\n<h2>ปรัชญาของเรา</h2>\r\n<p><span>สิ่งที่สร้างความแตกต่างให้กับแมคเคลเลอร์ คือ เราส่งมอบบริการในเชิงสร้างสรรค์ที่คิดค้นขึ้นเฉพาะลูกค้าแต่ละราย ทั้งนี้บริษัทฯเชื่อว่าบริการที่สามารถนำไปแก้ไขปัญหาได้อย่างมีประสิทธิภาพสูงสุดนั้น จะต้องมาจากการวิเคราะห์โดยคำนึงถึงคุณลักษณะและสภาพแวดล้อมของลูกค้าที่แตกต่างกันในแต่ละราย นอกจากนี้ เรายังมีความชำนาญในเทคโนโลยีการก่อสร้างระบบชิ้นส่วนสำเร็จรูป ซึ่งสามารถให้คำแนะนำสำหรับลูกค้าที่ต้องการลดระยะเวลาการก่อสร้างอย่างมีนัยสำคัญ ดังนั้น จึงทำให้ลูกค้ามั่นใจได้ว่า โครงการก่อสร้างจะเป็นไปตามแผนงาน งบประมาณ ขอบเขต และเงื่อนไขความต้องการของ</span></p><!--:-->	<!--:en-->Introduction Mckeller is a construction project management consulting firm that provides professional services in project management, construction management, construction supervision, cost consultancy and technical consultancy for construction projects in all industries regardless of size and scope from concept to project closeout. PHILOSOPHY What differentiate Mckeller from other consultants is the fact that we provide professional and creative services that are specifically tailored to meet the needs of individual client.  At Mckeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situations of each client. Moreover, we also specialize in pre-fabricated construction technology, providing the clients who are interested to significantly reduce in the project duration. Therefore, through our professional management, all projects will comply with schedule, budget, scope and client’s demand.<!--:--><!--:th-->บทนำ บริษัท แมคเคลเลอร์ จำกัด ให้บริการด้านที่ปรึกษาการบริหารโครงการก่อสร้าง บริการของบริษัทฯประกอบไปด้วย บริการบริหารโครงการ บริการบริหารงานก่อสร้าง บริการควบคุมงานก่อสร้าง บริการที่ปรึกษาด้านต้นทุนการก่อสร้าง และบริการที่ปรึกษาทางด้านเทคนิค สำหรับโครงการก่อสร้างทุกประเภท โดยไม่จำกัดขนาดและขอบเขต โดยทางบริษัทฯจะช่วยลูกค้าในการบริหารงาน เริ่มตั้งแต่ขั้นตอนการวางกรอบความคิดไปจนสิ้นสุดโครงการ  ปรัชญาของเรา สิ่งที่สร้างความแตกต่างให้กับแมคเคลเลอร์ คือ เราส่งมอบบริการในเชิงสร้างสรรค์ที่คิดค้นขึ้นเฉพาะลูกค้าแต่ละราย ทั้งนี้บริษัทฯเชื่อว่าบริการที่สามารถนำไปแก้ไขปัญหาได้อย่างมีประสิทธิภาพสูงสุดนั้น จะต้องมาจากการวิเคราะห์โดยคำนึงถึงคุณลักษณะและสภาพแวดล้อมของลูกค้าที่แตกต่างกันในแต่ละราย นอกจากนี้ เรายังมีความชำนาญในเทคโนโลยีการก่อสร้างระบบชิ้นส่วนสำเร็จรูป ซึ่งสามารถให้คำแนะนำสำหรับลูกค้าที่ต้องการลดระยะเวลาการก่อสร้างอย่างมีนัยสำคัญ ดังนั้น จึงทำให้ลูกค้ามั่นใจได้ว่า โครงการก่อสร้างจะเป็นไปตามแผนงาน งบประมาณ ขอบเขต และเงื่อนไขความต้องการของ<!--:-->	published	\N	\N	public	\N	Post	2017-06-03 09:39:07.065907	2017-06-03 09:39:07.065907	1	1	18	f
+8	<!--:en-->Our Mission<!--:--><!--:th-->พันธกิจ<!--:-->	<!--:en-->our-mission<!--:--><!--:th-->our-mission<!--:-->	<!--:en--><p>is to maximise clients' benefit by providing professional and practical consulting service.</p>\r\n<p></p>\r\n<p>At McKeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situation of each client.</p><!--:--><!--:th--><p>is to maximise clients' benefit by providing professional and practical consulting service.</p>\r\n<p></p>\r\n<p>At McKeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situation of each client.</p><!--:-->	<!--:en-->is to maximise clients' benefit by providing professional and practical consulting service.  At McKeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situation of each client.<!--:--><!--:th-->is to maximise clients' benefit by providing professional and practical consulting service.  At McKeller, we believe that the most practical and effective solution to any problem is the one that comes from a sound analysis that has taken into consideration the unique characteristics and situation of each client.<!--:-->	published	\N	\N	public	\N	Post	2017-06-03 09:55:10.035164	2017-06-03 09:55:10.035164	1	2	18	f
+10	<!--:en-->Key Personnel<!--:--><!--:th-->ทีมผู้บริหาร<!--:-->	<!--:en-->key-personnel<!--:--><!--:th-->key-personnel<!--:-->	<!--:en--><p><a href="/our-ceo"><img style="width: 100%; height: auto; margin: 10px;" src="http://localhost:3000/media/1/key_map.png" /></a></p><!--:--><!--:th--><p><a href="/th/our-ceo"><img style="width: 100%; height: auto; margin: 10px;" src="http://localhost:3000/media/1/key_map.png" width="776" height="362" /></a></p><!--:-->	<!--:en--><!--:--><!--:th--><!--:-->	published	\N	\N	public	\N	Post	2017-06-03 09:56:43.199656	2017-06-03 09:56:43.199656	1	3	18	f
+12	<!--:en-->OUR CEO<!--:--><!--:th-->กรรมการผู้จัดการ<!--:-->	<!--:en-->our-ceo<!--:--><!--:th-->our-ceo<!--:-->	<!--:en--><table>\r\n<tbody>\r\n<tr>\r\n<td>\r\n<h2><strong>Sorakrit Punthumontree</strong></h2>\r\n<p><strong>Chief Executive Officer</strong></p>\r\n</td>\r\n<td>&nbsp;</td>\r\n</tr>\r\n<tr style="background: white; width: 100%;">\r\n<td style="width: 60%; vertical-align: top; color: darkgrey;"><strong style="color: black;">Mr. Sorakrit Punthumontree</strong> is a highly experienced administrator of a wide range of property development and construction management such as residential, condominiums, hotels, factories, bridges, underground railway tunnels, etc. In addition, he also specializes in concrete pre-fabricated construction technology as well as inspection and maintenance of bridge structures and buildings and had previously held high-ranking executive positions in many of Thailand's leading companies</td>\r\n<td style="width: 40%;"><img src="http://localhost:3000/media/1/popkey_sorakrit.png" alt="" width="100%" height="auto" /></td>\r\n</tr>\r\n</tbody>\r\n</table><!--:--><!--:th--><table>\r\n<tbody>\r\n<tr>\r\n<td>\r\n<h2><strong>สรกฤตย์ พันธุมนตรี</strong></h2>\r\n<p><strong>กรรมการผู้จัดการ</strong></p>\r\n</td>\r\n<td>&nbsp;</td>\r\n</tr>\r\n<tr style="background: white; width: 100%;">\r\n<td style="width: 60%; vertical-align: top; color: darkgrey;"><strong style="color: black;">คุณสรกฤตย์ พันธุมนตรี</strong> มีประสบการณ์ในการบริหารธุรกิจพัฒนาอสังหาริมทรัพย์หลากหลายประเภท และมีความเชี่ยวชาญในการบริหารโครงการก่อสร้าง อาทิ บ้านจัดสรร คอนโดมิเนียม โรงแรม โรงงาน สะพาน อุโมงค์รถไฟฟ้า ใต้ดิน เป็นต้น นอกจากนี้ ยังมีความเชี่ยวชาญในด้านเทคโนโลยีการก่อสร้าง โดยใช้ระบบชิ้นส่วนคอนกรีตสำเร็จรูป ตลอดจนการตรวจสอบและบำรุงรักษาโครงสร้างสะพานและอาคาร เคยดำรงตำแหน่ง ผู้บริหารระดับสูงในองค์กรธุรกิจชั้นนำหลายแห่ง</td>\r\n<td style="width: 40%;"><img src="http://localhost:3000/media/1/popkey_sorakrit.png" alt="" width="100%" height="auto" /></td>\r\n</tr>\r\n</tbody>\r\n</table><!--:-->	<!--:en-->    Sorakrit Punthumontree Chief Executive Officer      Mr. Sorakrit Punthumontree is a highly experienced administrator of a wide range of property development and construction management such as residential, condominiums, hotels, factories, bridges, underground railway tunnels, etc. In addition, he also specializes in concrete pre-fabricated construction technology as well as inspection and maintenance of bridge structures and buildings and had previously held high-ranking executive positions in many of Thailand's leading companies    <!--:--><!--:th-->    สรกฤตย์ พันธุมนตรี กรรมการผู้จัดการ      คุณสรกฤตย์ พันธุมนตรี มีประสบการณ์ในการบริหารธุรกิจพัฒนาอสังหาริมทรัพย์หลากหลายประเภท และมีความเชี่ยวชาญในการบริหารโครงการก่อสร้าง อาทิ บ้านจัดสรร คอนโดมิเนียม โรงแรม โรงงาน สะพาน อุโมงค์รถไฟฟ้า ใต้ดิน เป็นต้น นอกจากนี้ ยังมีความเชี่ยวชาญในด้านเทคโนโลยีการก่อสร้าง โดยใช้ระบบชิ้นส่วนคอนกรีตสำเร็จรูป ตลอดจนการตรวจสอบและบำรุงรักษาโครงสร้างสะพานและอาคาร เคยดำรงตำแหน่ง ผู้บริหารระดับสูงในองค์กรธุรกิจชั้นนำหลายแห่ง    <!--:-->	published	\N	\N	public	\N	Post	2017-06-03 09:59:13.744845	2017-06-03 09:59:13.744845	1	4	18	f
+\.
+
+
+--
+-- Name: cama_posts_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_posts_id_seq', 12, true);
+
+
+--
+-- Data for Name: cama_term_relationships; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_term_relationships (id, objectid, term_order, term_taxonomy_id) FROM stdin;
+1	1	\N	6
+\.
+
+
+--
+-- Name: cama_term_relationships_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_term_relationships_id_seq', 1, true);
+
+
+--
+-- Data for Name: cama_term_taxonomy; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_term_taxonomy (id, taxonomy, description, parent_id, count, name, slug, term_group, term_order, status, created_at, updated_at, user_id) FROM stdin;
+2	post_type	Posts	1	\N	Post	post	\N	\N	\N	2017-06-03 09:21:49.928552	2017-06-03 09:21:49.928552	\N
+3	user_roles	Default roles admin	1	\N	Administrator	admin	-1	\N	\N	2017-06-03 09:21:50.007485	2017-06-03 09:21:50.007485	\N
+4	user_roles	Editor Role	1	\N	Editor	editor	\N	\N	\N	2017-06-03 09:21:50.026738	2017-06-03 09:21:50.026738	\N
+5	user_roles	Contributor Role	1	\N	Contributor	contributor	\N	\N	\N	2017-06-03 09:21:50.037904	2017-06-03 09:21:50.037904	\N
+7	post_type	Pages	1	\N	Page	page	\N	\N	\N	2017-06-03 09:21:50.21296	2017-06-03 09:21:50.21296	\N
+8	nav_menu	\N	1	6	Main Menu	main_menu	\N	\N	\N	2017-06-03 09:21:50.391768	2017-06-03 09:21:50.391768	\N
+30	nav_menu_item	23	8	\N	auto	post_type	1	6	\N	2017-06-03 09:40:37.171515	2017-06-03 09:40:37.171515	\N
+11	user_roles	Default roles client	1	\N	Client	client	-1	\N	\N	2017-06-03 09:21:50.835315	2017-06-03 09:21:50.835315	\N
+12	plugin	\N	1	\N	front_cache	front_cache	1	\N	\N	2017-06-03 09:21:51.124611	2017-06-03 09:21:51.136631	\N
+13	plugin	\N	1	\N	cama_contact_form	cama_contact_form	1	\N	\N	2017-06-03 09:21:51.339386	2017-06-03 09:21:51.356075	\N
+14	plugin	\N	1	\N	attack	attack	1	\N	\N	2017-06-03 09:21:51.5564	2017-06-03 09:21:51.566463	\N
+15	plugin	\N	1	\N	cama_meta_tag	cama_meta_tag	1	\N	\N	2017-06-03 09:21:51.747938	2017-06-03 09:21:51.759665	\N
+6	category	\N	2	0	Uncategorized	uncategorized	1	\N	2	2017-06-03 09:21:50.066884	2017-06-03 09:21:50.066884	\N
+1	site		\N	\N	McKeller	localhost:3000	\N	\N		2017-06-03 09:21:49.7484	2017-06-03 09:28:22.260279	\N
+19	post_type	services	1	\N	<!--:en-->WHAT WE DO<!--:--><!--:th-->บริการ<!--:-->	what-we-do	\N	\N	\N	2017-06-03 09:23:24.305303	2017-06-03 09:35:34.194272	\N
+18	post_type	about company 	1	\N	<!--:en-->WHO WE ARE<!--:--><!--:th-->เกี่ยวกับเรา<!--:-->	who-we-are	\N	\N	\N	2017-06-03 09:23:09.34351	2017-06-03 09:35:50.985451	\N
+20	post_type		1	\N	<!--:en-->PROJECTS<!--:--><!--:th-->ผลงานที่ผ่านมา<!--:-->	projects	\N	\N	\N	2017-06-03 09:24:34.11298	2017-06-03 09:36:21.521866	\N
+21	post_type		1	\N	<!--:en-->ARTICLES<!--:--><!--:th-->สาระน่ารู้<!--:-->	articles	\N	\N	\N	2017-06-03 09:24:55.676614	2017-06-03 09:36:34.632889	\N
+22	post_type		1	\N	<!--:en-->CAREER<!--:--><!--:th-->ร่วมงานกับเรา<!--:-->	career	\N	\N	\N	2017-06-03 09:25:09.031859	2017-06-03 09:36:49.736354	\N
+23	post_type		1	\N	<!--:en-->CONTACT<!--:--><!--:th-->ติดต่อเรา<!--:-->	contact	\N	\N	\N	2017-06-03 09:25:19.052202	2017-06-03 09:37:01.142527	\N
+16	theme	\N	1	\N	default	default	\N	\N	inactive	2017-06-03 09:21:51.946151	2017-06-03 09:21:51.946151	\N
+24	nav_menu_item	18	8	\N	auto	post_type	1	1	\N	2017-06-03 09:40:08.523343	2017-06-03 09:40:08.523343	\N
+31	theme	\N	1	\N	Landed	landed	\N	\N	inactive	2017-06-03 10:12:11.360473	2017-06-03 10:12:11.360473	\N
+17	theme	\N	1	\N	Gbctheme	gbctheme	\N	\N	\N	2017-06-03 09:21:51.9667	2017-06-03 10:14:26.946548	\N
+26	nav_menu_item	19	8	\N	auto	post_type	1	2	\N	2017-06-03 09:40:22.106143	2017-06-03 09:40:22.106143	\N
+27	nav_menu_item	20	8	\N	auto	post_type	1	3	\N	2017-06-03 09:40:26.509404	2017-06-03 09:40:26.509404	\N
+28	nav_menu_item	21	8	\N	auto	post_type	1	4	\N	2017-06-03 09:40:29.851345	2017-06-03 09:40:29.851345	\N
+29	nav_menu_item	22	8	\N	auto	post_type	1	5	\N	2017-06-03 09:40:33.435907	2017-06-03 09:40:33.435907	\N
+\.
+
+
+--
+-- Name: cama_term_taxonomy_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_term_taxonomy_id_seq', 31, true);
+
+
+--
+-- Data for Name: cama_users; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY cama_users (id, username, role, email, slug, password_digest, auth_token, password_reset_token, parent_id, password_reset_sent_at, last_login_at, created_at, updated_at, site_id, confirm_email_token, confirm_email_sent_at, is_valid_email, first_name, last_name) FROM stdin;
+2	anonymous	client	anonymous_user@local.com	\N	$2a$10$MB0Xeu.z8gjLUANBx8nyMeHvf5sESPTErAOaqyYrlpFlUgz1Puso.	R77abl_boeGGVI3vXCtj0g	\N	\N	\N	\N	2017-06-03 09:21:50.798536	2017-06-03 09:21:50.798536	-1	\N	\N	t	Anonymous	\N
+1	admin	admin	admin@local.com	\N	$2a$10$YjWOJZKVQRsTCuD9YDZdkeNP7DS3UeeaLXMgdoRAqx2jKA.fdhAeC	FLGbDJ4f_kHELFc7JNT0rg	\N	\N	\N	2017-06-03 09:50:30.897706	2017-06-03 09:21:50.506073	2017-06-03 09:50:30.91106	-1	\N	\N	t	Administrator	\N
+\.
+
+
+--
+-- Name: cama_users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('cama_users_id_seq', 2, true);
+
+
+--
+-- Data for Name: plugins_attacks; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY plugins_attacks (id, path, browser_key, site_id, created_at) FROM stdin;
+1	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:21:56.726251
+2	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:28:43.721906
+3	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:13.365849
+4	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:13.847177
+5	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:25.776779
+6	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:26.125053
+7	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:28.204631
+8	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:28.570511
+9	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:35.094259
+10	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:34:35.547613
+11	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:39:13.338916
+12	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:39:13.881026
+13	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:39:18.873707
+14	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:39:19.239699
+15	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:39:29.254818
+16	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:40:45.265838
+17	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:40:46.107109
+18	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:40:48.453178
+19	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:57:05.315405
+20	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:57:06.243668
+21	get_/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:57:19.866426
+22	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:57:20.771972
+23	get_/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:18.417369
+24	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:19.126289
+25	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:21.758838
+26	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:22.521373
+27	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:28.260943
+28	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:29.019084
+29	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:34.081007
+30	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:34.837688
+31	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:39.474612
+32	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:40.237122
+33	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:45.037661
+34	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 09:59:45.794092
+35	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:00:42.747691
+36	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:00:43.730178
+37	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:13.189743
+38	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:14.029254
+39	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:16.847123
+40	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:17.523652
+41	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:34.581299
+42	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:36.904852
+43	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:38.834693
+44	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:39.506278
+45	get_/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:46.328212
+46	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:47.1991
+47	get_/th/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:50.19073
+48	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:50.878753
+49	get_/th/our-ceo	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:53.573762
+50	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:54.275615
+51	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:58.914245
+52	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:01:59.596447
+53	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:01.868914
+54	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:02.532508
+55	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:13.447778
+56	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:14.082793
+57	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:18.103413
+58	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:18.757573
+59	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:22.081045
+60	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:02:22.695863
+61	get_/sdf	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:03:42.416361
+62	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:03:43.16453
+63	get_/sdf	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:04:23.689494
+64	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:04:24.452296
+65	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:17.830466
+66	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:18.77744
+67	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:24.700473
+68	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:25.409445
+69	get_/th/what-we-do	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:35.14925
+70	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:35.889344
+71	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:38.001178
+72	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:38.671651
+73	get_/th/projects	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:40.173158
+74	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:40.922249
+75	get_/th/articles	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:42.491388
+76	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:43.268739
+77	get_/th/career	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:44.301526
+78	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:45.127764
+79	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:46.212757
+80	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:05:46.952632
+81	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:06:21.130541
+84	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:24.660557
+85	get_/th/what-we-do	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:37.672478
+90	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:46.063345
+91	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:54.423572
+98	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:49.355324
+102	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:05.098422
+103	get_/th/what-we-do	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:07.23031
+106	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:10.438775
+82	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:06:21.908873
+83	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:23.745145
+86	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:38.519981
+93	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:39.285133
+99	get_/th/our-ceo	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:51.466016
+108	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:13.001266
+87	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:40.296235
+94	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:40.439542
+95	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:45.312762
+100	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:52.168639
+101	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:04.408146
+105	get_/th/projects	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:09.688309
+88	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:41.001467
+89	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:45.391756
+92	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:07:55.181149
+96	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:46.055991
+97	get_/th/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:10:48.604379
+104	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:08.001131
+107	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:11:12.300324
+109	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:32.554353
+110	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:34.038256
+111	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:39.533891
+112	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:40.291011
+113	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:52.769721
+114	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:12:53.73474
+115	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:05.289652
+116	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:06.198368
+117	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:32.517629
+118	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:33.218819
+119	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:37.896394
+120	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:38.530503
+121	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:43.197462
+122	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:43.887319
+123	get_/th/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:48.518079
+124	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:49.227484
+125	get_/th/our-ceo	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:53.786009
+126	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:54.456848
+127	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:56.88858
+128	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:14:57.561017
+129	get_/	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:34.525983
+130	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:37.975361
+131	get_/th/what-we-do	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:41.577296
+132	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:42.430245
+133	get_/th/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:44.605179
+134	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:45.490116
+135	get_/en/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:53.743534
+136	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:18:54.441541
+137	get_/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:14.357768
+138	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:15.425321
+139	get_/our-ceo	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:18.90847
+140	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:19.618969
+141	get_/key-personnel	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:22.226847
+142	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:22.922865
+143	get_/who-we-are	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:29.198337
+144	get_/assets/camaleon_cms/bootstrap	62386498919f0c443cc381c5d2e183ad	1	2017-06-03 10:19:29.901898
+\.
+
+
+--
+-- Name: plugins_attacks_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('plugins_attacks_id_seq', 144, true);
+
+
+--
+-- Data for Name: plugins_contact_forms; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY plugins_contact_forms (id, site_id, count, parent_id, name, slug, description, value, settings, created_at, updated_at) FROM stdin;
+\.
+
+
+--
+-- Name: plugins_contact_forms_id_seq; Type: SEQUENCE SET; Schema: public; Owner: ToeyHom
+--
+
+SELECT pg_catalog.setval('plugins_contact_forms_id_seq', 1, false);
+
+
+--
+-- Data for Name: schema_migrations; Type: TABLE DATA; Schema: public; Owner: ToeyHom
+--
+
+COPY schema_migrations (version) FROM stdin;
+20150611161134
+20150926095310
+20151212095328
+20160504155652
+20160504155653
+20160517143441
+20160606135421
+20160609121449
+20161206211917
+20161215202255
+\.
+
+
+--
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY ar_internal_metadata
+    ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: cama_comments_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_comments
+    ADD CONSTRAINT cama_comments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_custom_fields_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_custom_fields
+    ADD CONSTRAINT cama_custom_fields_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_custom_fields_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_custom_fields_relationships
+    ADD CONSTRAINT cama_custom_fields_relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_metas_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_metas
+    ADD CONSTRAINT cama_metas_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_posts_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_posts
+    ADD CONSTRAINT cama_posts_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_term_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_term_relationships
+    ADD CONSTRAINT cama_term_relationships_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_term_taxonomy_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_term_taxonomy
+    ADD CONSTRAINT cama_term_taxonomy_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: cama_users_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY cama_users
+    ADD CONSTRAINT cama_users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plugins_attacks_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY plugins_attacks
+    ADD CONSTRAINT plugins_attacks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: plugins_contact_forms_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY plugins_contact_forms
+    ADD CONSTRAINT plugins_contact_forms_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: ToeyHom
+--
+
+ALTER TABLE ONLY schema_migrations
+    ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: index_cama_comments_on_approved; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_comments_on_approved ON cama_comments USING btree (approved);
+
+
+--
+-- Name: index_cama_comments_on_comment_parent; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_comments_on_comment_parent ON cama_comments USING btree (comment_parent);
+
+
+--
+-- Name: index_cama_comments_on_post_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_comments_on_post_id ON cama_comments USING btree (post_id);
+
+
+--
+-- Name: index_cama_comments_on_user_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_comments_on_user_id ON cama_comments USING btree (user_id);
+
+
+--
+-- Name: index_cama_custom_fields_on_object_class; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_on_object_class ON cama_custom_fields USING btree (object_class);
+
+
+--
+-- Name: index_cama_custom_fields_on_objectid; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_on_objectid ON cama_custom_fields USING btree (objectid);
+
+
+--
+-- Name: index_cama_custom_fields_on_parent_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_on_parent_id ON cama_custom_fields USING btree (parent_id);
+
+
+--
+-- Name: index_cama_custom_fields_on_slug; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_on_slug ON cama_custom_fields USING btree (slug);
+
+
+--
+-- Name: index_cama_custom_fields_relationships_on_custom_field_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_relationships_on_custom_field_id ON cama_custom_fields_relationships USING btree (custom_field_id);
+
+
+--
+-- Name: index_cama_custom_fields_relationships_on_custom_field_slug; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_relationships_on_custom_field_slug ON cama_custom_fields_relationships USING btree (custom_field_slug);
+
+
+--
+-- Name: index_cama_custom_fields_relationships_on_object_class; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_relationships_on_object_class ON cama_custom_fields_relationships USING btree (object_class);
+
+
+--
+-- Name: index_cama_custom_fields_relationships_on_objectid; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_custom_fields_relationships_on_objectid ON cama_custom_fields_relationships USING btree (objectid);
+
+
+--
+-- Name: index_cama_metas_on_key; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_metas_on_key ON cama_metas USING btree (key);
+
+
+--
+-- Name: index_cama_metas_on_object_class; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_metas_on_object_class ON cama_metas USING btree (object_class);
+
+
+--
+-- Name: index_cama_metas_on_objectid; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_metas_on_objectid ON cama_metas USING btree (objectid);
+
+
+--
+-- Name: index_cama_posts_on_post_class; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_posts_on_post_class ON cama_posts USING btree (post_class);
+
+
+--
+-- Name: index_cama_posts_on_post_parent; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_posts_on_post_parent ON cama_posts USING btree (post_parent);
+
+
+--
+-- Name: index_cama_posts_on_slug; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_posts_on_slug ON cama_posts USING btree (slug);
+
+
+--
+-- Name: index_cama_posts_on_status; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_posts_on_status ON cama_posts USING btree (status);
+
+
+--
+-- Name: index_cama_posts_on_user_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_posts_on_user_id ON cama_posts USING btree (user_id);
+
+
+--
+-- Name: index_cama_term_relationships_on_objectid; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_relationships_on_objectid ON cama_term_relationships USING btree (objectid);
+
+
+--
+-- Name: index_cama_term_relationships_on_term_order; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_relationships_on_term_order ON cama_term_relationships USING btree (term_order);
+
+
+--
+-- Name: index_cama_term_relationships_on_term_taxonomy_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_relationships_on_term_taxonomy_id ON cama_term_relationships USING btree (term_taxonomy_id);
+
+
+--
+-- Name: index_cama_term_taxonomy_on_parent_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_taxonomy_on_parent_id ON cama_term_taxonomy USING btree (parent_id);
+
+
+--
+-- Name: index_cama_term_taxonomy_on_slug; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_taxonomy_on_slug ON cama_term_taxonomy USING btree (slug);
+
+
+--
+-- Name: index_cama_term_taxonomy_on_taxonomy; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_taxonomy_on_taxonomy ON cama_term_taxonomy USING btree (taxonomy);
+
+
+--
+-- Name: index_cama_term_taxonomy_on_term_order; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_taxonomy_on_term_order ON cama_term_taxonomy USING btree (term_order);
+
+
+--
+-- Name: index_cama_term_taxonomy_on_user_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_term_taxonomy_on_user_id ON cama_term_taxonomy USING btree (user_id);
+
+
+--
+-- Name: index_cama_users_on_email; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_users_on_email ON cama_users USING btree (email);
+
+
+--
+-- Name: index_cama_users_on_role; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_users_on_role ON cama_users USING btree (role);
+
+
+--
+-- Name: index_cama_users_on_site_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_users_on_site_id ON cama_users USING btree (site_id);
+
+
+--
+-- Name: index_cama_users_on_username; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_cama_users_on_username ON cama_users USING btree (username);
+
+
+--
+-- Name: index_plugins_attacks_on_browser_key; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_plugins_attacks_on_browser_key ON plugins_attacks USING btree (browser_key);
+
+
+--
+-- Name: index_plugins_attacks_on_path; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_plugins_attacks_on_path ON plugins_attacks USING btree (path);
+
+
+--
+-- Name: index_plugins_attacks_on_site_id; Type: INDEX; Schema: public; Owner: ToeyHom
+--
+
+CREATE INDEX index_plugins_attacks_on_site_id ON plugins_attacks USING btree (site_id);
+
+
+--
+-- Name: public; Type: ACL; Schema: -; Owner: ToeyHom
+--
+
+REVOKE ALL ON SCHEMA public FROM PUBLIC;
+REVOKE ALL ON SCHEMA public FROM "ToeyHom";
+GRANT ALL ON SCHEMA public TO "ToeyHom";
+GRANT ALL ON SCHEMA public TO PUBLIC;
+
+
+--
+-- PostgreSQL database dump complete
+--
+
