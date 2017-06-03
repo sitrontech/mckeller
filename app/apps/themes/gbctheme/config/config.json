@@ -1,0 +1,14 @@
+{
+  "name" : "Gbctheme",
+  "description" : "",
+  "thumb" : "images/image.png",
+  "helpers": [
+    "Themes::Gbctheme::MainHelper"
+  ],
+  "hooks": {
+    "on_active": ["gbctheme_on_install_theme"],
+    "on_inactive": ["gbctheme_on_uninstall_theme"],
+    "on_theme_settings": ["gbctheme_settings"]
+    //here all your hooks
+  }
+}

@@ -1,0 +1,94 @@
+<!-- MISSION -->
+<section id="banner">
+	<div class="content">
+		<header>
+			<% mission = current_site.the_post("our-mission")%>
+			<h2><%= raw mission.the_title %></h2>
+			<%=raw mission.the_content %>
+		</header>
+		<span class="image"><img src="<%= mission.the_thumb_url%>" alt="" /></span>
+	</div>
+	<a href="#companyprofile" class="goto-next scrolly">Next</a>
+</section>
+<!-- COMPANY PROFILE -->
+<% profile = current_site.the_post("company-profile")%>
+<section id="companyprofile" class="spotlight style3 left" style="background-position: center 6px; background-image: url(&quot;<%= profile.the_thumb_url%>&quot;);">
+	<span class="image fit main bottom"><img src="<%= profile.the_thumb_url%>" alt=""></span>
+	<div class="content">
+		<header>
+			<h2><%= raw profile.the_title %></h2>
+		</header>
+		<p><%=raw profile.the_content[0..373] %> ...</p>
+		<ul class="actions">
+			<li><a href="/company-profile" class="button"><%=profile.the_field("profile_more_btn")
+				%></a></li>
+			</ul>
+		</div>
+		<a href="#services" class="goto-next scrolly">Next</a>
+	</section>
+	<!-- SERVICES -->
+	<% services = current_site.the_post("what-we-do")%>
+	<section id="services" class="wrapper style1 special fade-up">
+		<div class="container">
+			<header class="major">
+				<h2><%= services.the_title%></h2>
+				<p><%= raw services.the_content[0..499] %></p>
+			</header>
+			<div class="box alt">
+				<div class="row uniform">
+					<% services.the_post_type.the_posts.where(post_parent: services.id).each do  |s|%>
+					<% service = s.decorate%>
+					<section class="3u 6u(medium) 12u$(xsmall)" style="height:350px">
+						<span class="icon alt major <%=service.the_field("service_icon") 
+						%>"></span>
+						<h3><%=raw service.the_title%></h3>
+						<p><%=  service.the_meta("summary").html_safe%></p>
+					</section>
+					<%end%>
+
+				</div>
+			</div>
+			<footer class="major">
+				<ul class="actions">
+
+					<li><a href="#" class="button"><%=services.the_field("service_more_btn")
+						%></a></li>
+					</ul>
+				</footer>
+			</div>
+		</section>
+
+		<!-- Contact us -->
+		<% contact = current_site.the_post("contact-us")%>
+		<section id="subscribe" class="wrapper style2 special fade">
+			<div class="container">
+				<header>
+					<h2><%=raw contact.the_title%></h2>
+					<p><%=  contact.the_meta("summary").html_safe%></p>
+				</header>
+				<div class="box alt">
+					<div class="row uniform">
+
+						<section class="4u 4u(medium) 4u$(xsmall)">
+							<%= link_to 'tel:0883566567', class: "fit white" do%>
+							<span class="icon alt major white fa fa-phone"></span>
+							<p> +66 (0) 2509 2054</p>
+							<%end%>
+						</section>
+						<section class="4u 4u(medium) 4u$(xsmall)">
+							<span class="icon alt major white">
+								<%= image_tag("linebtn.png", style: "height: 60% ;vertical-align: middle;",class: "fit") %> 
+							</span>
+							<p> @mckeller</p>
+						</section>
+						<section class="4u 4u(medium) 4u$(xsmall)">
+							<a class="fit white" href="mailto:info@mckeller.co.th?subject=[Info]สนใจสอบถามรายละเอียดเพิ่มเติม&amp;body=ชื่อ: %0D%0A เบอร์โทรติดต่อ: %0D%0A ข้อความ:">
+
+								<span class="icon alt major white fa fa-envelope"></span>
+								<p> info@mckeller.co.th</p>
+							</a>
+						</section>
+					</div>
+				</div>
+			</div>
+		</section>

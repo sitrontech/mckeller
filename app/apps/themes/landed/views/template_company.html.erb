@@ -1,0 +1,24 @@
+<!-- Main -->
+<% mission = current_site.the_post("our-mission")%>
+<% profile = current_site.the_post("company-profile")%>
+<% key = current_site.the_post("key-personnel")%>
+
+<div class="img-cover" style="background-image:url(<%= @post.the_thumb_url %>); ">
+</div>
+ <div id="main" class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2><%= raw mission.the_title %></h2>
+			<%=raw mission.the_content %>
+		</header>
+		<div class="row 150%">
+			<div class="4u" >
+				<%= render partial: 'partials/sidemenu',locals: { activemenu: @post.the_slug , mainmenu: @post_type, submenu1: [profile,key] } %>
+			</div>
+			<div class="8u">
+				<%= raw @post.the_content %>
+
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,23 @@
+<% service = current_site.the_post("what-we-do")%>
+
+<div class="img-cover" style="background-image:url(<%= service.the_thumb_url %>); ">
+</div>
+<div id="main" class="wrapper style1">
+	<div class="container">
+		<header class="major">
+			<h2><%= raw service.the_title %></h2>
+			<%=raw service.the_content %>
+		</header>
+		<div class="row 150%">
+			<div class="4u" >
+			
+				<%= render partial: 'partials/sidemenu',locals: { activemenu: "construction-project-management", mainmenu: @post_type, submenu1: @post_type.the_posts.where.not(post_parent: nil).decorate  } %>
+			</div>
+			<div class="8u">
+				
+				
+				
+			</div>
+		</div>
+	</div>
+</div>

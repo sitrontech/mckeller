@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title><%= current_site.the_title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- END META SECTION -->
+
+    <%= stylesheet_link_tag theme_asset_path("css/main") %>
+    <%= javascript_include_tag theme_asset_path("js/main.js") %>
+    <%= raw the_head %>
+</head>
+<body class="landing">
+
+    <!-- container -->
+    <div >
+        <!-- header -->
+        <div class="navbar navbar-primary">
+            <div class="navbar-header">
+                <a id="logo" class="navbar-brand" href="<%= current_site.the_url %>"><%= image_tag current_site.the_logo, class: "img-responsive" %></a>
+                
+            </div>
+            <div id="navbar-main" class="navbar-collapse collapse">
+                <header id="header">
+                    <nav id="nav">
+                        <%= raw get_nav_menu('main_menu', 'nav navbar-nav ') %>
+                    </nav>
+                </header >
+                <ul id="language">
+                    <%=locale_link "english",url_for( :locale => 'en' ),:en%>
+                    <%=locale_link "ไทย",url_for( :locale => 'th' ),:th%>
+                </ul>
+            </div>
+        </div>
+        <!-- ./header -->
+        <!-- content -->
+        <div >
+            <%= yield %>
+        </div>
+
+        <!-- footer -->
+        <footer id="footer">
+
+            <ul class="copyright">
+                <li>©2017 McKeller Co.,LTD. All right reserved.</li>
+                <!-- <li>Deverlop: <a href="mailto:pattiyaa@gmail.com">Pattiya Akaratawee</a></li> -->
+            </ul>
+        </footer>
+        <!-- ./footer -->
+    </div>
+    <!-- ./container -->
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.dropotron.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
+<!-- FOOTER -->

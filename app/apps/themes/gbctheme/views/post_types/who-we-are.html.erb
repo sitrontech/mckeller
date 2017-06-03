@@ -1,0 +1,33 @@
+<% mission = current_site.the_post("our-mission")%>
+<% profile = current_site.the_post("company-profile")%>
+<% key = current_site.the_post("key-personnel")%>
+<div id="content" style="display: block;">
+	<!-- / Hompage -->
+	<div class="header-image" style="background-image:url(<%= profile.the_thumb_url %>); ">
+	</div>
+	<div class="container" >
+		<div class="row">
+			<div class="col-xs-12">
+				<center itemprop="mainEntity" itemscope=""><h1><%=raw mission.the_meta("summary") %></h1>
+				</center>
+			</div>
+		</div>
+		<div class="row">
+			<section>
+				<div class="col-sm-3 submenu">
+					<div class="tag">
+						<%= t('aboutus')%>
+					</div>
+					<!-- / Subpages -->
+					<ul>
+						<li class="active"><a href="<%=root_url%>"><%=profile.the_title%></a></li>
+						<li><a href="<%= key.the_url%>"><%=key.the_title%></a></li>
+					</ul>
+				</div>
+				<div class="col-sm-9">
+					<%= raw profile.the_content %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

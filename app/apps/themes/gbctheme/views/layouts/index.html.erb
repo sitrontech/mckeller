@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- META SECTION -->
+    <title><%= current_site.the_title %></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- END META SECTION -->
+
+    <%= stylesheet_link_tag theme_asset_path("css/main") %>
+    <%= javascript_include_tag theme_asset_path("js/main.js") %>
+    <%= raw the_head %>
+</head>
+<body>
+
+    <!-- container -->
+    <div >
+        <!-- header -->
+        <div data-turbolinks-permanent="" id="router" class="">
+            <div class="container">
+                <div id="logo">
+                    <a id="logo" class="navbar-brand" href="<%= current_site.the_url %>"><%= image_tag current_site.the_logo, class: "img-responsive" %></a>
+                </div>
+                <nav>
+                    <%= raw get_nav_menu('main_menu', 'roots')%>
+                    <ul class="languages">
+                        <%=locale_link "english",url_for( :locale => 'en' ),:en%>
+                        <span class="spacer">
+                            |
+                        </span>
+                        <%=locale_link "ไทย",url_for( :locale => 'th' ),:th%>
+                    </ul>
+                </nav>
+                <div id="mobile-trigger" class="">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+        
+        
+        <!-- ./header -->
+        <!-- body -->
+        <div >
+            <%= yield %>
+        </div>
+
+        <!-- footer -->
+        <footer style="display: block;">
+            <%= render partial: 'partials/footer' %>    
+        </footer>
+<!-- ./footer -->
+</div>
+<!-- ./container -->
+</body>
+</html>
