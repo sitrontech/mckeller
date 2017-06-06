@@ -1,5 +1,6 @@
 <% profile = current_site.the_post("company-profile")%>
 <% key = current_site.the_post("key-personnel")%>
+<% activemenu = @post.the_slug%>
 <div class="container" >
 		<div class="row">
 			<section>
@@ -9,8 +10,8 @@
 					</div>
 					<!-- / Subpages -->
 					<ul>
-						<li class="active"><a href="<%=root_url%>"><%=profile.the_title%></a></li>
-						<li><a href="<%= key.the_url%>"><%=key.the_title%></a></li>
+						<li class="<%= activemenu == profile.the_slug ? 'active' : ''%> "><a href="<%=root_url%>"><%=profile.the_title%></a></li>
+						<li class="<%= activemenu == key.the_slug ? 'active' : ''%> "><a href="<%=root_url%>"><a href="<%= key.the_url%>"><%=key.the_title%></a></li>
 					</ul>
 				</div>
 				<div class="col-sm-9">
