@@ -7,17 +7,21 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!-- END META SECTION -->
-
+    <!-- turbolinks -->
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <!-- camaleon  -->
     <%= stylesheet_link_tag theme_asset_path("css/main") %>
     <%= javascript_include_tag theme_asset_path("js/main.js") %>
+     <!-- The head -->
     <%= raw the_head %>
+
 </head>
-<body>
+<body >
 
     <!-- container -->
     <div >
         <!-- header -->
-        <div data-turbolinks-permanent="" id="router" class="">
+        <div  id="router" class="">
             <div class="container">
                 <div id="logo">
                     <a id="logo" class="navbar-brand" href="<%= current_site.the_url %>"><%= image_tag current_site.the_logo, class: "img-responsive" %></a>

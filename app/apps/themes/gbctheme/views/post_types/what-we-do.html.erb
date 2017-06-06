@@ -1,0 +1,28 @@
+<% services = current_site.the_post_type("what-we-do")%>
+<% @post = current_site.the_post("service-overview")%>
+<% activemenu = @post.the_slug%>
+<div class="header-image" style="background-image:url(<%= @post.the_thumb_url %>); ">
+</div>
+<div class="container" >
+		<div class="row">
+			<section>
+				<div class="col-sm-3 submenu">
+					<div class="tag">
+						<%= t('services')%>
+					</div>
+					<!-- / Subpages -->
+					<ul>
+						<% services.the_posts.decorate.each do |service|%>
+
+			                <li class="<%= activemenu == service.the_slug ? 'active' : ''%> "><a href="<%=service.the_url%>"><%=service.the_title%></a>
+			                </li>
+			            <%end%>
+					</ul>
+				</div>
+				<div class="col-sm-9">
+					<%= raw @post.the_content %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

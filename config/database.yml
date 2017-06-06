@@ -25,6 +25,15 @@ development:
   <<: *default
   database: mckeller_development
 
+# development:
+#   adapter: postgresql
+#   encoding: utf8
+#   database: d4odacsl391kre
+#   pool: 5432
+#   username: wlyszorxpgphul
+#   password: e72de80936d019d89f9d3271e1497797f993e5115ad7733717f8b71db11f6109
+#   host: ec2-184-73-236-170.compute-1.amazonaws.com
+
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.

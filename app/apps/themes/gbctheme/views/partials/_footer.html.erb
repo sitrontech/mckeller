@@ -4,7 +4,8 @@
     <div class="col-lg-4 col-md-4">
         <h2><%= t('company') %></h2>
         <div class="uppercase">
-          <% current_site.the_post_types[2..4].each do |menu| %>
+   
+          <% current_site.the_post_types.where(:slug => ["who-we-are","what-we-do","projects"]).order(:slug=> :DESC).each do |menu| %>
             <p><a href="<%=menu.decorate.the_url%>"><%=menu.decorate.the_title%></a></p>
             <%end%>
         </div>
@@ -17,6 +18,7 @@
     <div class="col-lg-4 col-md-4">
         <h2><%=services.the_title%></h2>
         <ul class="links"> 
+
             <% services.the_posts.where.not(post_parent: nil).decorate.each do |service|%>
                 <a href="<%=service.the_url%>"><li><%=raw service.the_title%></li>
             <%end%>

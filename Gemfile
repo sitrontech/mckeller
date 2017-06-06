@@ -55,8 +55,11 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "camaleon_cms"
+gem 'camaleon_post_order', github: 'owen2345/camaleon-post-order-plugin'
 gem 'draper', github: 'drapergem/draper'
 
 #################### Camaleon CMS include all gems for plugins and themes #################### 
 require './lib/plugin_routes' 
 instance_eval(PluginRoutes.draw_gems)
+
+gem 'social-share-button', '~> 0.10.0'

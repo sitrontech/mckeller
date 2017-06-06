@@ -20,5 +20,24 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 th:
+  date:
+    formats:
+      default: '%d %^B %Y %H:%M'
+      short: '%d-%m-%y'
+  time:
+    formats:
+      default: '%H:%m'
   aboutus: "เกี่ยวกับเรา"
+  services: "บริการ"
   company: "บริษัท"
+  projects: "โครงการที่ผ่านมา"
+  ourreferences: "ความภูมิใจของเรา"
+  all: "ทั้งหมด"
+  articles: "บทความ"
+  author: "ผู้เขียน: "
+  social_share_button:
+    share_to: "แชร์ไปยัง %{name}"
+    facebook: "Facebook"
+    google_plus: "google +"
+    twitter: "Twitter"
+    email: "อีเมลล์"

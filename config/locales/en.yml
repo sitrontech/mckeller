@@ -20,5 +20,18 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
+  date:
+    formats:
+      default: '%d %^B %Y %H:%M'
+      short: '%d-%m-%y'
+  time:
+    formats:
+      default: '%H:%m'
   aboutus: "About Us"
+  services: "Services"
   company: "Company"
+  projectss: "Projects"
+  ourreferences: "Our references"
+  all: "All"
+  articles: "Articles"
+  author: "Author:"

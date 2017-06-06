@@ -10,18 +10,23 @@
  *
  
  */
-@import url("../css/font-awesome.min");
-@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");
+@import url("font-awesome.min");
+@import url("/assets/social-share-button.css");
+/*@import url("https://fonts.googleapis.com/css?family=Roboto:100,300,100italic,300italic");*/
+@import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
+@import url('https://fonts.googleapis.com/css?family=Prompt:300&subset=thai');
 /*@import "/assets/camaleon_cms/bootstrap";*/
 @font-face {
   font-family: "Cloud";
   src: url("../fonts/Cloud-Light") format("truetype");
+  font-style: normal;
 }
 @font-face {
   font-family: "Cloud";
   src: url("../fonts/Cloud-Bold") format("truetype");
   font-weight: bold;
 }
+
  
 
 * {
@@ -40,11 +45,13 @@ html {
 }
 body {
     /*font-family: "Didact Gothic",  sans-serif;*/
-    font-family: "Cloud", sans-serif;
+    font-family: "Didact Gothic","Prompt", sans-serif;
     font-size: 14px;
+
     line-height: 1.42857143;
     color: #333333;
     background-color: #fff;
+    margin: 150px 0 0 0;
 }
 input, button, select, textarea {
     font-family: inherit;
@@ -122,7 +129,7 @@ hr {
 }
 h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
     /*font-family: "Didact Gothic",  sans-serif;*/
-    font-family: "Cloud", sans-serif;
+    /*font-family: "Cloud", sans-serif;*/
     font-weight: 500;
     line-height: 1.1;
     color: inherit;
@@ -2097,7 +2104,7 @@ tbody.collapse.in {
 }
 .nav .open>a, .nav .open>a:hover, .nav .open>a:focus {
     background-color: #eeeeee;
-    border-color: #0019B3;
+  
 }
 .nav .nav-divider {
     height: 1px;
@@ -2723,7 +2730,7 @@ tbody.collapse.in {
     z-index: 2;
     color: #fff;
     background-color: #0019B3;
-    border-color: #0019B3;
+
     cursor: default;
 }
 .pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a, .pagination>.disabled>a:hover, .pagination>.disabled>a:focus {
@@ -3743,7 +3750,7 @@ button.close {
     position: absolute;
     z-index: 1070;
     display: block;
-    font-family: "Didact Gothic",  sans-serif;
+    /*font-family: "Didact Gothic",  sans-serif;*/
     font-size: 12px;
     font-weight: normal;
     line-height: 1.4;
@@ -4527,14 +4534,17 @@ th.visible-print, td.visible-print {
     opacity: 0;
 }
 }@media (max-width: 991px) {
-    #router {
+body{
+    margin: 0;
+}
+#router {
     height: 124px;
 }
 #router .container {
     height: 100%}
 #router #logo {
-    padding: 15px;
-    margin: 30px 0 30px 0;
+    /*padding: 15px;
+    margin: 30px 0 30px 0;*/
     max-width: 300px;
 }
 #router #logo img {
@@ -4563,10 +4573,10 @@ th.visible-print, td.visible-print {
     cursor: pointer;
     width: 60px;
     height: 60px;
-    position: fixed;
     right: 34px;
+    float: right;
     z-index: 999;
-    background-color: #0019B3;
+    background-color: #003359;
     border: 4px solid white;
 }
 #router #mobile-trigger span {
@@ -4596,8 +4606,8 @@ th.visible-print, td.visible-print {
     top: 36px;
 }
 #router #mobile-trigger.active {
-    background-color: #0019B3;
-    border-color: #0019B3;
+    background-color: #003359;
+   
 }
 #router #mobile-trigger.active span:nth-child(1) {
     top: 24px;
@@ -4622,14 +4632,14 @@ th.visible-print, td.visible-print {
 }
 #router #mobile-trigger.top {
     top: 30px;
-    border-color: #0019B3;
+  
 }
 #router #mobile-trigger.active {
     top: 0px;
 }
 }@media (max-width: 991px) and (min-width: 425px) {
     #router #mobile-trigger {
-    border-color: #0019B3;
+   
     top: 30px;
 }
 #router #mobile-trigger.active {
@@ -4678,7 +4688,7 @@ th.visible-print, td.visible-print {
 }
 #router nav ul.roots li.active,
 #router nav ul.roots li.current-menu-item  {
-    background-color: #0019B3;
+    background-color: #003359;
 }
 #router nav ul.roots li a {
     position: relative;
@@ -4713,7 +4723,7 @@ th.visible-print, td.visible-print {
     background-color: black;
 }
 #router nav ul.languages li.active {
-    background-color: #0019B3;
+    background-color: #003359;
 }
 #router nav ul.languages li a {
     line-height: 30px;
@@ -4835,8 +4845,8 @@ th.visible-print, td.visible-print {
 }
 }@media (min-width: 992px) {
     h1 {
-    /*font-size: 40px;*/
-    font-size: 38px;
+    font-size: 40px;
+    
 }
 }h1 .small {
     font-size: 0.7em;
@@ -4844,7 +4854,8 @@ th.visible-print, td.visible-print {
 }
 .tag {
     width: 100%;
-    background-color: #0019B3;
+    /*background-color: #0019B3;*/
+    background-color: #003359;
     color: white;
     text-align: left;
     line-height: 38px;
@@ -4944,7 +4955,7 @@ section ul li {
     list-style-type: none;
 }
 #page-content ul li:before, .collapse ul li:before {
-    content: "";
+    content: ">";
     font-family: "Glyphicons Halflings";
     font-size: 9px;
     float: left;
@@ -5430,7 +5441,7 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
     display: inline-block;
 }
 }#contact_page .office-info p.address:before {
-    content: "";
+    content: ">";
     font-family: "Glyphicons Halflings";
     color: #d9534f;
     font-size: 15px;
