@@ -41,14 +41,15 @@ var closesmallmenu = function(){
 }
 var smallmenu = function(){
             $("#router nav").addClass("show");
-            $("#mobile-trigger").addClass("active").click(function(){
-                closesmallmenu();
-            });
+            $("#mobile-trigger").addClass("active").click(closesmallmenu);
         };
 
 document.addEventListener("turbolinks:load", function() {    
-    $("#mobile-trigger").click(smallmenu);   
-    $(".menu-item").click(closesmallmenu);            
+    $("#mobile-trigger").click(smallmenu);  
+    $("#mobile-trigger.active").click(closesmallmenu);   
+    $(".menu-item").click(closesmallmenu); 
+
+           
 });  
 
 
