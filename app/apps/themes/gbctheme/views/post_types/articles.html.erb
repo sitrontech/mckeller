@@ -1,0 +1,36 @@
+<% articles = current_site.the_post_type("articles")%>
+<% first = articles.the_posts.where(:post_parent => nil)[0].decorate%>
+
+<div class="container">
+	<div class="row">
+		<br>
+		<section>
+			<div class="col-sm-3">
+			<div class="tag"><%= t('articles')%></div>
+				<a href="mailto:info@mckeller.co.th"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
+				</a><br>
+				<br>
+			</div>
+			<div class="col-sm-9">
+				<h2><%= first.the_title%></h2>
+				<%= raw first.the_content%>
+				<br>
+				<br>
+				<% articles.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |article,index|%> 
+					<div class="job" id="mep_havac_cad_engineer">
+						<div class="small job-date">
+							<%= l(article.updated_at, format: t('date.formats.default')) %>
+							
+						</div>
+						<a aria-controls="mep_havac_cad_engineer" aria-expanded="false" class="job" href="<%= article.the_url%>" role="button">
+							<div class="job-title" itemprop="about"><h2><%= article.the_title %></h2>
+
+								<p><%=t('author')%> <%= article.the_field("author") %></p>
+							</div>
+						</a>
+					</div>
+				<%end%>
+			</div>				
+		</section>
+	</div>
+</div>

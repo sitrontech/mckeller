@@ -1,0 +1,47 @@
+<% projects = current_site.the_post_type("projects")%>
+<% activemenu = @post_type != nil ? @post_type.the_slug : '' %>
+<div class="container">
+	<div class="row">
+		<section>
+			<div class="col-sm-3 submenu">
+				<div class="tag "><%= t('projects')%></div>
+					<!-- / Categories -->
+					<ul>
+						<li class="<%= activemenu == 'projects' ? 'active' : ''%> "><a href="<%=projects.the_url%>"><%=t('all')%></a>
+				        </li>
+						<% projects.the_categories.where.not(:name => "Uncategorized").decorate.each do |cat|%>
+
+				           <li class="<%= activemenu == cat.the_slug ? 'active' : ''%> "><a href="<%=cat.the_url%>"><%=cat.the_title%></a>
+				                </li>
+				        <%end%>
+					</ul>
+				</div>
+			<div class="col-sm-9">
+				<h2><%= t('ourreferences')%></h2>
+				<div class="projects ">
+
+					<% projects.the_posts.decorate.each_with_index do |project,index|%> 
+				        <div class="col-sm-6">
+							<img alt="<%=project.the_title%>" src="<%=project.the_thumb_url%>">
+							<h3>
+								<%=project.the_title%>
+
+								<div class="small"><%=project.the_field("project-location")%></div>
+							</h3>
+						
+							<%=  project.the_content.html_safe%>
+							<h3>
+								<div class="small"><%= t('services')%></div>
+							</h3>
+							<%=  project.the_field("project-service") %>
+						</div>
+						<% if index.odd?%>
+							<div class="row"></div>
+						<%end%>
+				    <%end%>
+			  	</div>
+			</div>
+			
+		</section>
+	</div>
+</div>
