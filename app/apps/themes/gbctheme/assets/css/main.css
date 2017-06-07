@@ -4523,7 +4523,12 @@ th.visible-print, td.visible-print {
 #router.smaller nav ul.languages {
     opacity: 0;
 }
-}@media (max-width: 991px) {
+}@media (max-width: 424px){
+    #router {
+    height: auto;
+}
+}
+@media (max-width: 991px) {
 body{
     margin: 0;
 }
