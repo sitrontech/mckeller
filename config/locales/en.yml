@@ -23,6 +23,7 @@ en:
   date:
     formats:
       default: '%d %^B %Y %H:%M'
+      dateonly: '%d %^B %Y'
       short: '%d-%m-%y'
   time:
     formats:
@@ -35,3 +36,5 @@ en:
   all: "All"
   articles: "Articles"
   author: "Author:"
+  deadline: "Application deadline: "
+  contact: "Contact Us"

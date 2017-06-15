@@ -7,7 +7,7 @@ end
 
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.2'
+gem 'rails' ,'5.0.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 0.18'
 # Use Puma as the app server
@@ -55,7 +55,7 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
-gem "camaleon_cms"
+gem "camaleon_cms",  '2.4.3.5'
 gem 'camaleon_post_order', github: 'owen2345/camaleon-post-order-plugin'
 gem 'draper', github: 'drapergem/draper'
 

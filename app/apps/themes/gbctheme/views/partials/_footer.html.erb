@@ -20,13 +20,13 @@
         <ul class="links"> 
 
             <% services.the_posts.where.not(post_parent: nil).decorate.each do |service|%>
-                <a href="<%=service.the_url%>"><li><%=raw service.the_title%></li>
+                <a href="<%=service.the_url%>"><li><%=raw service.the_title%></li></a>
             <%end%>
         </ul>
     </div>
     <div class="col-lg-4 col-md-4">
         <!-- /%h2= t('footer.contact') -->
-        <h2><%=headoffice.the_title%></h2>
+        <a href="<%=current_site.the_post_type("contact").the_url%>"> <h2><%=headoffice.the_title%></h2></a>
         <%= raw headoffice.the_content%>
     </div>
 </div>

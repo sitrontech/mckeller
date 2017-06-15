@@ -64,13 +64,13 @@ GEM
     arel (7.1.4)
     autoprefixer-rails (7.1.1)
       execjs
-    aws-sdk (2.9.32)
-      aws-sdk-resources (= 2.9.32)
-    aws-sdk-core (2.9.32)
+    aws-sdk (2.9.36)
+      aws-sdk-resources (= 2.9.36)
+    aws-sdk-core (2.9.36)
       aws-sigv4 (~> 1.0)
       jmespath (~> 1.0)
-    aws-sdk-resources (2.9.32)
-      aws-sdk-core (= 2.9.32)
+    aws-sdk-resources (2.9.36)
+      aws-sdk-core (= 2.9.36)
     aws-sigv4 (1.0.0)
     bcrypt (3.1.11)
     bindex (0.5.0)
@@ -84,7 +84,7 @@ GEM
       rails
     cama_meta_tag (1.4)
       rails (>= 4.1.0)
-    camaleon_cms (2.4.3.6)
+    camaleon_cms (2.4.3.5)
       aws-sdk (~> 2)
       bcrypt
       breadcrumbs_on_rails
@@ -200,7 +200,7 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    tether-rails (1.3.3)
+    tether-rails (1.4.0)
       rails (>= 3.1)
     thor (0.19.4)
     thread_safe (0.3.6)
@@ -222,7 +222,7 @@ GEM
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.2)
-    will_paginate (3.1.5)
+    will_paginate (3.1.6)
     will_paginate-bootstrap (1.0.1)
       will_paginate (>= 3.0.3)
 
@@ -232,7 +232,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap (~> 4.0.0.alpha6)
   byebug
-  camaleon_cms
+  camaleon_cms (= 2.4.3.5)
   camaleon_post_order!
   coffee-rails (~> 4.2)
   draper!
@@ -241,7 +241,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   puma (~> 3.0)
-  rails (~> 5.0.2)
+  rails (= 5.0.3)
   sass-rails (~> 5.0)
   social-share-button (~> 0.10.0)
   spring

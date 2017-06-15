@@ -1,0 +1,49 @@
+<% profile = current_site.the_post("company-profile")%>
+<% manage = current_site.the_post("management")%>
+<% about = current_site.the_post_type("who-we-are")%>
+<div class="container" >
+		<div >
+			<section>
+				<div class="col-md-3 submenu">
+					<div class="tag">
+						<%= t('aboutus')%>
+					</div>
+					<!-- / Subpages -->
+					<ul>
+			
+						<% about.the_posts.decorate.each_with_index do |submenu,index|%> 
+					  
+					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
+					   			<li class="<%= submenu.the_slug =='management' ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			
+					   		<%end%>
+					   <%end%>
+					</ul>
+				</div>
+				<div class="col-md-9">
+					<%= raw manage.the_content %>
+					
+					<%  manage.children.decorate.each_with_index do |m,index| %>
+					<div id="mem_<%=index%>">
+						
+						<a aria-controls="mem_<%=index%>" aria-expanded="false" class="management-member collapsed" data-toggle="collapse" href="#manage_mem_<%=index%>" role="button">
+							<div class="management-member" >
+							<img src="<%= m.the_thumb_url%>" alt="<%= m.the_title%>">
+							<div class="text">
+								<h3><%= m.the_title%></h3>
+								<h4><%= raw m.the_meta("summary")%></h4>
+							</div>
+						</div>
+						</a>
+						<div class="collapse" id="manage_mem_<%=index%>" aria-expanded="false" style="height: 7px;">
+							<div class="content">
+							  <%= raw m.the_content  %>
+							</div>
+						</div>
+					</div>
+					<%end%>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

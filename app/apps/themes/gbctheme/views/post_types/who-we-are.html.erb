@@ -1,6 +1,6 @@
 <% mission = current_site.the_post("our-mission")%>
 <% profile = current_site.the_post("company-profile")%>
-<% key = current_site.the_post("key-personnel")%>
+<% about = current_site.the_post_type("who-we-are")%>
 <div id="content" style="display: block;">
 	<!-- / Hompage -->
 	<div class="header-image" style="background-image:url(<%= profile.the_thumb_url %>); ">
@@ -20,8 +20,15 @@
 					</div>
 					<!-- / Subpages -->
 					<ul>
-						<li class="active"><a href="<%=root_url%>"><%=profile.the_title%></a></li>
-						<li><a href="<%= key.the_url%>"><%=key.the_title%></a></li>
+					   <% isFirst = 1%>
+					   <% about.the_posts.decorate.each_with_index do |submenu,index|%> 
+					  
+					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
+					   			<li class="<%= isFirst == 1 ? 'active':''%>" ><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			<% isFirst = isFirst+1%>
+					   		<%end%>
+					   <%end%>
+						
 					</ul>
 				</div>
 				<div class="col-sm-9">

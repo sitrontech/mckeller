@@ -1,0 +1,46 @@
+<% career = current_site.the_post_type("career")%>
+<% first = career.the_posts.where(:post_parent => nil)[0].decorate%>
+<div class="header-image" style="background-image:url(<%= first.the_thumb_url %>); ">
+</div>
+<div class="container">
+
+	<div class="row">
+		<br>
+		<section>
+			<div class="col-sm-3">
+				<div class="tag"><%= first.the_meta("summary")%></div>
+				<a href="mailto:hr@mckeller.co.th"><img alt="Send quary" width="100%" src="<%= first.the_field("small-photo")%>">
+				</a>
+				<br>
+				<br>
+			</div>
+			<div class="col-sm-9">
+				<h2><%= first.the_title%></h2>
+				<%= raw first.the_content%>
+				<br>
+				<br>
+				<% career.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |job,index|%> 
+		
+					<div class="job" id="mep_<%=index%>">
+						<div class="small job-date">
+							<%=  t('deadline') %>
+							<%= l(Date.parse(job.the_field('application-deadline')), format: t('date.formats.dateonly')) %>
+						</div>
+						<a aria-controls="mep_<%=index%>" aria-expanded="false" class="job collapsed" data-toggle="collapse" href="#job_mep_<%=index%>" role="button">
+							<div class="job-title" itemprop="about"><h2><%= job.the_title %></h2>
+
+								<p><%= job.the_field('location') %></p>
+							</div>
+						</a>
+						<div class="collapse" id="job_mep_<%=index%>" aria-expanded="false" style="height: 7px;">
+							<div class="content">
+							  <%= raw job.the_content  %>
+							</div>
+						</div>
+					</div>
+					<%end%>
+
+				</div>
+			</section>
+		</div>
+	</div>

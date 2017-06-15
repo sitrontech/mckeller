@@ -1,20 +1,26 @@
 <% profile = current_site.the_post("company-profile")%>
 <% key = current_site.the_post("key-personnel")%>
-<% activemenu = @post.the_slug%>
+<% about = current_site.the_post_type("who-we-are")%>
 <div class="container" >
 		<div class="row">
 			<section>
-				<div class="col-sm-3 submenu">
+				<div class="col-md-3 submenu">
 					<div class="tag">
 						<%= t('aboutus')%>
 					</div>
 					<!-- / Subpages -->
 					<ul>
-						<li class="<%= activemenu == profile.the_slug ? 'active' : ''%> "><a href="<%=root_url%>"><%=profile.the_title%></a></li>
-						<li class="<%= activemenu == key.the_slug ? 'active' : ''%> "><a href="<%=root_url%>"><a href="<%= key.the_url%>"><%=key.the_title%></a></li>
+			
+						<% about.the_posts.decorate.each_with_index do |submenu,index|%> 
+					  
+					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
+					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			
+					   		<%end%>
+					   <%end%>
 					</ul>
 				</div>
-				<div class="col-sm-9">
+				<div class="col-md-9">
 					<%= raw @post.the_content %>
 				</div>
 			</section>

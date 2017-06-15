@@ -3,7 +3,7 @@
 <div class="container">
 	<div class="row">
 		<section>
-			<div class="col-sm-3 submenu">
+			<div class="col-sm-3 submenu col-xs-12">
 				<div class="tag "><%= t('projects')%></div>
 					<!-- / Categories -->
 					<ul>
@@ -16,12 +16,12 @@
 				        <%end%>
 					</ul>
 				</div>
-			<div class="col-sm-9">
+			<div class="col-sm-9 col-xs-12">
 				<h2><%= t('ourreferences')%></h2>
 				<div class="projects ">
 
 					<% projects.the_posts.decorate.each_with_index do |project,index|%> 
-				        <div class="col-sm-6">
+				        <div class="col-sm-6 col-md-6 col-xs-12">
 							<img alt="<%=project.the_title%>" src="<%=project.the_thumb_url%>">
 							<h3>
 								<%=project.the_title%>
@@ -36,7 +36,7 @@
 							<%=  project.the_field("project-service") %>
 						</div>
 						<% if index.odd?%>
-							<div class="row"></div>
+							<div class="row" style="clear: left;"></div>
 						<%end%>
 				    <%end%>
 			  	</div>

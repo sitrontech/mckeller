@@ -1,34 +1,3 @@
 <% articles = current_site.the_post_type("articles")%>
-<% first = articles.the_posts.where(:post_parent => nil)[0].decorate%>
-
-<div class="container">
-	<div class="row">
-		<br>
-		<section>
-			<div class="col-sm-3">
-			<div class="tag"><%= t('articles')%></div>
-				<a href="<%articles.the_url%>"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
-				</a><br>
-				<br>
-			</div>
-			<div class="col-sm-9">
-				<h2><%= @post.the_title%>
-				<div class="row small job-date" style="line-height: 3em;">
-					   <span><%=t('author')%> <%= @post.the_field("author") %></span>
-					   <span class="pull-right"><%= l(@post.updated_at, format: t('date.formats.default')) %></span>
-					   <br/>
-				</div>
-				</h2>
-				<div class="row">
-					<div class="pull-right">
-						<%= social_share_button_tag(@post.the_title,  :data => { :url => @post.the_url} ) %>
-					</div>
-				</div>
-				<%= raw @post.the_content%>
-				<br>
-				<br>
-				
-			</div>				
-		</section>
-	</div>
-</div>
+  
+<%= render partial: 'partials/article',locals: { articles: articles} %>

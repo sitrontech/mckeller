@@ -23,10 +23,15 @@ th:
   date:
     formats:
       default: '%d %^B %Y %H:%M'
+      dateonly: '%d %^B %Y'
       short: '%d-%m-%y'
   time:
     formats:
       default: '%H:%m'
+  camaleon_cms:
+    admin:
+      sidebar:
+        contents: 'ข้อมูล'
   aboutus: "เกี่ยวกับเรา"
   services: "บริการ"
   company: "บริษัท"
@@ -35,6 +40,8 @@ th:
   all: "ทั้งหมด"
   articles: "บทความ"
   author: "ผู้เขียน: "
+  deadline: "หมดเขตรับสมัคร: "
+  contact: "ติดต่อเรา"
   social_share_button:
     share_to: "แชร์ไปยัง %{name}"
     facebook: "Facebook"
