@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161215202255) do
+ActiveRecord::Schema.define(version: 20170616065624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -152,6 +152,16 @@ ActiveRecord::Schema.define(version: 20161215202255) do
     t.index ["role"], name: "index_cama_users_on_role", using: :btree
     t.index ["site_id"], name: "index_cama_users_on_site_id", using: :btree
     t.index ["username"], name: "index_cama_users_on_username", using: :btree
+  end
+
+  create_table "plugins_attacks", force: :cascade do |t|
+    t.string   "path"
+    t.string   "browser_key"
+    t.integer  "site_id"
+    t.datetime "created_at"
+    t.index ["browser_key"], name: "index_plugins_attacks_on_browser_key", using: :btree
+    t.index ["path"], name: "index_plugins_attacks_on_path", using: :btree
+    t.index ["site_id"], name: "index_plugins_attacks_on_site_id", using: :btree
   end
 
   create_table "plugins_contact_forms", force: :cascade do |t|

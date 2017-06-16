@@ -57,6 +57,7 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "camaleon_cms",  '2.4.3.5'
 gem 'camaleon_post_order', github: 'owen2345/camaleon-post-order-plugin'
+gem 'cama_contact_form', '~> 0.0.24'
 gem 'draper', github: 'drapergem/draper'
 
 #################### Camaleon CMS include all gems for plugins and themes #################### 
