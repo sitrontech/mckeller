@@ -9,7 +9,10 @@
 		<section>
 			<div class="col-sm-3">
 				<div class="tag"><%= first.the_meta("summary")%></div>
-				<a href="mailto:hr@mckeller.co.th"><img alt="Send quary" width="100%" src="<%= first.the_field("small-photo")%>">
+				<a href="mailto:hr@mckeller.co.th">
+				<%if first.the_field("small-photo").present?%>
+				<img alt="Send quary" width="100%" src="<%= first.the_field("small-photo")%>">
+				<%end%>
 				</a>
 				<br>
 				<br>

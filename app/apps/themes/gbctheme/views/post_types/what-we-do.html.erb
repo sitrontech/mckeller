@@ -1,5 +1,5 @@
 <% services = current_site.the_post_type("what-we-do")%>
-<% @post = current_site.the_post("service-overview")%>
+<% @post = services.the_posts[0].decorate%>
 <% activemenu = @post.the_slug%>
 <div class="header-image" style="background-image:url(<%= @post.the_thumb_url %>); ">
 </div>

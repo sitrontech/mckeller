@@ -1,24 +1,38 @@
 <% first = articles.the_posts.where(:post_parent => nil)[0].decorate%>
-
+<!-- <div class="header-image" style="background-image:url(<%= first.the_thumb_url %>); ">
+</div> -->
 <div class="container">
-	<div class="row">
+	<div >
 		<br>
 		<section>
-			<div class="col-xs-12 col-sm-3">
-			<div class="tag"><%=  first.the_meta("summary")%></div>
-				<a href="<%articles.the_url%>"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
+			<div class="col-xs-12 col-sm-3 submenu">
+			<div class="tag"><%= link_to  first.the_meta("summary"), articles.the_url%></div>
+				<!-- <a href="<%articles.the_url%>"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
 				</a><br>
-				<br>
+				<br> -->
+				<!-- / Subpages -->
+					<ul style="margin-top: 49px;">
+			
+						<%  @post.the_post_type.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |submenu,index|%> 
+					      
+					        
+					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			
+					   		
+					   <%end%>
+					</ul>
 			</div>
 			<div class="col-xs-12 col-sm-9">
-				<h2><%= @post.the_title%>
+				<h2>
+				<%= @post.the_title%>
 				<div class="container small job-date" style="line-height: 3em;">
-					   <span><%=t('author')%> <%= @post.the_field("author") %></span>
-					   <span class="pull-right"><%= l(@post.updated_at, format: t('date.formats.default')) %></span>
+					   
+					   <div class="pull-right"><%= l(@post.updated_at, format: t('date.formats.default')) %></div >
 					   <br/>
 				</div>
 				</h2>
 				<div class="container">
+					<span><%=t('author')%> <%= @post.the_field("author") %></span>
 					<div class="pull-right">
 						<%= social_share_button_tag(@post.the_title,  :data => { :url => @post.the_url} ) %>
 					</div>

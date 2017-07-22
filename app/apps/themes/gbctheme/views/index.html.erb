@@ -1,1 +1,37 @@
-<h1>Hello Camaleon CMS</h1>
+<% news = current_site.the_post_type("news")%>
+<% services = current_site.the_post_type("what-we-do")%>
+<% @post = services.the_posts[0].decorate%>
+<% activemenu = @post.the_slug%>
+ <div id="splashscreen">
+    <h2>Welcome !</h2>
+    Take a look at our new products, blablabla
+ 
+    <img src="<%= news.the_posts.where(:isFeature=>true)[0].decorate.the_thumb_url%>" />
+
+    <a href="#" class="enter_link">Enter on the website</a>
+</div>
+<div class="header-image" style="background-image:url(<%= @post.the_thumb_url %>); ">
+</div>
+<div class="container" >
+		<div class="row">
+			<section>
+				<div class="col-sm-3 submenu col-xs-12">
+					<div class="tag">
+						<%= t('services')%>
+					</div>
+					<!-- / Subpages -->
+					<ul>
+						<% services.the_posts.decorate.each do |service|%>
+
+			                <li class="<%= activemenu == service.the_slug ? 'active' : ''%> "><a href="<%=service.the_url%>"><%=service.the_title%></a>
+			                </li>
+			            <%end%>
+					</ul>
+				</div>
+				<div class="col-sm-9 col-xs-12">
+					<%= raw @post.the_content %>
+				</div>
+			</section>
+		</div>
+	</div>
+</div>

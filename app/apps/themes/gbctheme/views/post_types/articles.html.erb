@@ -1,14 +1,15 @@
 <% articles = current_site.the_post_type("articles")%>
 <% first = articles.the_posts.where(:post_parent => nil)[0].decorate%>
-
+<div class="header-image" style="background-image:url(<%= first.the_thumb_url %>); ">
+</div>
 <div class="container">
-	<div class="row">
+	<div >
 		<br>
 		<section>
 			<div class="col-xs-12 col-sm-3">
 				<div class="tag"><%= t('articles')%></div>
-				<a href="mailto:info@mckeller.co.th"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
-				</a>
+				<!-- <a href="mailto:info@mckeller.co.th"><img alt="Send quary" width="100%" src="<%= first.the_thumb_url%>">
+				</a> -->
 				<br>
 				<br>
 			</div>

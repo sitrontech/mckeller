@@ -1,7 +1,7 @@
 <% services = current_site.the_post_type("what-we-do")%>
 <% headoffice = current_site.the_post("head-office")%>
 <div class="container">
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
         <h2><%= t('company') %></h2>
         <div class="uppercase">
    
@@ -15,16 +15,16 @@
         <a class="social" target="_blank" href="#"><i class="fa fa-google-plus"></i></a>
        
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
         <h2><%=services.the_title%></h2>
         <ul class="links"> 
 
-            <% services.the_posts.where.not(post_parent: nil).decorate.each do |service|%>
+            <% services.the_posts.decorate.each do |service|%>
                 <a href="<%=service.the_url%>"><li><%=raw service.the_title%></li></a>
             <%end%>
         </ul>
     </div>
-    <div class="col-lg-4 col-md-4">
+    <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
         <!-- /%h2= t('footer.contact') -->
         <a href="<%=current_site.the_post_type("contact").the_url%>"> <h2><%=headoffice.the_title%></h2></a>
         <%= raw headoffice.the_content%>
@@ -33,7 +33,7 @@
 <div class="copyright">
     <div class="container">
         <div class="col-12" style="text-align:center">
-            ©2017 McKeller Co.,LTD. All right reserved.
+            ©2017 McKeller Co.,Ltd. All right reserved.
         </div>
         
     </div>

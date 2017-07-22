@@ -25,13 +25,14 @@ if (window.sidebar){
     document.onclick=reEnable;
 }
 // disable right click
-function blockContextMenu (evt) { evt.preventDefault();};
-window.addEventListener('contextmenu', blockContextMenu);
+// function blockContextMenu (evt) { evt.preventDefault();};
+// window.addEventListener('contextmenu', blockContextMenu);
 
 // small header
 window.addEventListener("scroll", function() {
     var t, e, n, i, r;
     n=window.pageYOffset||document.documentElement.scrollTop, r=150, e=$("#router"), n>r?e.hasClass("smaller")||e.addClass("smaller"): e.hasClass("smaller")&&e.removeClass("smaller"), i=50, t=$("#mobile-trigger"), n>i?t.hasClass("top")||t.addClass("top"):t.hasClass("top")&&t.removeClass("top");
+     sessionStorage.scrollTop = $(this).scrollTop();
 });
 
 // mobile menu
@@ -49,8 +50,22 @@ document.addEventListener("turbolinks:load", function() {
     $("#mobile-trigger.active").click(closesmallmenu);   
     $(".menu-item").click(closesmallmenu); 
 
+    if (sessionStorage.scrollTop != "undefined") {
+        $(window).scrollTop(sessionStorage.scrollTop);
+    }
+     
+    // if ($("#splashscreen") != null){
+    //   $("body").css("overflow", "hidden");
+    // }
+    $("#splashscreen").click(function () {
+        $("#splashscreen").fadeOut("slow"); // you could also use $(this).fadeOut('slow');
+        $("body").css("overflow", "auto");
+    });
            
 });  
+
+
+
 
 
 

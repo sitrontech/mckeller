@@ -1,25 +1,33 @@
 <% logos = current_site.the_post_type("logo")%>
+<div class="customerlogo">
+	<div class="container" >
 
-<div class="container customerlogo" >
-	<div class="col-md-2 col-xs-12"></div>
-	<div class="col-md-8 col-xs-12">
-		<h3><%= logos.the_posts.where(:post_parent => nil)[0].decorate.the_title %></h3>
-		<div class="row-fluid">
-				<% logos.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |logo,index|%>
-					<div class="col-xs-3">
-						<%if index == 0 %>
-						<div class="responsive-container">
-							<div class="dummy"></div>
-						    <div class="img-container">
-						       <img class="desaturate img-responsive" src="<%= logo.the_thumb_url%>">
-						    </div>
+		
+			<h3><%= logos.the_posts.where(:post_parent => nil)[0].decorate.the_title %></h3>
+			<div class="row-fluid">
+					<% logos.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |logo,index|%>
+						<div class="col-xs-4 col-sm-2">
+					
+							<%if logo.the_field("logo-location") == "1" %>
+							<div class="responsive-container">
+								<div class="dummy"></div>
+							    <div class="img-container">
+							       <img class="desaturate img-responsive" src="<%= logo.the_thumb_url%>">
+							    </div>
+							</div>
+							<%elsif logo.the_field("logo-location") == "2" %>
+								<div class="responsive-container">
+									<div class="dummy"></div>
+								    <div class="img-container bottom">
+								       <img class="desaturate img-responsive" src="<%= logo.the_thumb_url%>">
+								    </div>
+								</div>
+							<%else%>
+							 <img class="desaturate img-responsive" src="<%= logo.the_thumb_url%>">
+							<%end%>
 						</div>
-						<%else%>
-						 <img class="desaturate img-responsive" src="<%= logo.the_thumb_url%>">
-						<%end%>
-					</div>
-				<%end%>
-		</div>
+					<%end%>
+			</div>
+		
 	</div>
-	<div class="col-md-2 col-xs-12"></div>
 </div>

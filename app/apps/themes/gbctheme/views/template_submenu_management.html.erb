@@ -14,7 +14,7 @@
 						<% about.the_posts.decorate.each_with_index do |submenu,index|%> 
 					  
 					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
-					   			<li class="<%= submenu.the_slug =='management' ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			<li class="<%= submenu.the_slug =='management' ? 'active' : ''%> "><a  href="<%= index == 0 ? "/" :  submenu.the_url%>"><%=submenu.the_title%></a></li>
 					   			
 					   		<%end%>
 					   <%end%>
@@ -23,11 +23,12 @@
 				<div class="col-md-9">
 					<%= raw manage.the_content %>
 					
-					<%  manage.children.decorate.each_with_index do |m,index| %>
+					<%  manage.children.where(:status =>"published").decorate.each_with_index do |m,index| %>
+					
 					<div id="mem_<%=index%>">
 						
 						<a aria-controls="mem_<%=index%>" aria-expanded="false" class="management-member collapsed" data-toggle="collapse" href="#manage_mem_<%=index%>" role="button">
-							<div class="management-member" >
+							<div  >
 							<img src="<%= m.the_thumb_url%>" alt="<%= m.the_title%>">
 							<div class="text">
 								<h3><%= m.the_title%></h3>

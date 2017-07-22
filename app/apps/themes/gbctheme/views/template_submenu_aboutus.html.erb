@@ -12,9 +12,9 @@
 					<ul>
 			
 						<% about.the_posts.decorate.each_with_index do |submenu,index|%> 
-					  
+					      
 					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
-					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
+					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= index == 0 ? root_path : submenu.the_url%>"><%=submenu.the_title%></a></li>
 					   			
 					   		<%end%>
 					   <%end%>
