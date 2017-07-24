@@ -9,16 +9,8 @@
 						<%= t('aboutus')%>
 					</div>
 					<!-- / Subpages -->
-					<ul>
-			
-						<% about.the_posts.decorate.each_with_index do |submenu,index|%> 
-					  
-					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
-					   			<li class="<%= submenu.the_slug =='management' ? 'active' : ''%> "><a  href="<%= index == 0 ? "/" :  submenu.the_url%>"><%=submenu.the_title%></a></li>
-					   			
-					   		<%end%>
-					   <%end%>
-					</ul>
+					<%= raw get_nav_menu('aboutusmenu', 'aboutus')%>
+					
 				</div>
 				<div class="col-md-9">
 					<%= raw manage.the_content %>

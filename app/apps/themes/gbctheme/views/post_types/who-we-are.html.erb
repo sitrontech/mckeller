@@ -18,17 +18,8 @@
 						<%= t('aboutus')%>
 					</div>
 					<!-- / Subpages -->
-					<ul>
-					   <% isFirst = 1%>
-					   <% about.the_posts.decorate.each_with_index do |submenu,index|%> 
-					  
-					        <% if submenu.the_field("isshowinsubmenu")  == "1" %>
-					   			<li class="<%= index == 0 ? 'active':''%>" ><a  href="<%= index == 0 ? root_path : submenu.the_url%>"><%= submenu.the_title%></a></li>
-					   			
-					   		<%end%>
-					   <%end%>
-						
-					</ul>
+
+					<%= raw get_nav_menu('aboutusmenu', 'aboutus')%>
 				</div>
 				<div class="col-xs-12  col-sm-9">
 					<%= raw profile.the_content %>

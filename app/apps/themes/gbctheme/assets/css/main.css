@@ -4464,7 +4464,7 @@ th.visible-print, td.visible-print {
     color: black;
 }
 #router nav ul li.active a,
-#router nav ul li.current-menu-item a {
+#router nav ul li.current-menu-item a{
     color: black;
     border-bottom: 2px solid rgba(0,25,179,0.3);
 }
@@ -4701,7 +4701,8 @@ body{
     background-color: rgba(0, 0, 0, 0.8);
 }
 #router nav ul.roots li.active,
-#router nav ul.roots li.current-menu-item  {
+#router nav ul.roots li.current-menu-item,
+#router nav ul.roots li a.menu_link {
     background-color: #081D7A;
 }
 #router nav ul.roots li a {
@@ -4764,23 +4765,32 @@ body{
     height: 100%;
     color: #07167D;
 }
-.submenu ul li a:active, .submenu ul li a:visited, .submenu ul li a:focus, .submenu ul li a:link {
+.submenu ul.aboutus li.current-menu-item a,
+.submenu ul li a:active, 
+.submenu ul li a:visited, 
+.submenu ul li a:focus, 
+.submenu ul li a:link {
     text-decoration: none;
 }
-.submenu ul li.active {
+.submenu ul li.active ,
+ul.aboutus li.current-menu-item a{
     border-left: 2px solid rgba(0, 25, 179, 0.3);
 }
-.submenu ul li.active a {
+.submenu ul li.active a,
+ul.aboutus li.current-menu-item a {
     padding: 2px 7px;
     color: black;
 }
-.submenu ul li.active:hover {
+.submenu ul li.active:hover,
+ul.aboutus li.current-menu-item a:hover {
     border-left: 2px solid rgba(0, 7, 51, 0.3);
 }
-.submenu ul li:hover {
+.submenu ul li:hover
+ul.aboutus li a:hover {
     border-left: 2px solid rgba(0, 7, 51, 0.3);
 }
-.submenu ul li:hover a {
+.submenu ul li:hover a,
+ul li:hover a {
     padding: 2px 7px;
     text-decoration: none;
 }
@@ -5769,6 +5779,12 @@ img.desaturate {
     left: 0;
     height: 100%;
     width: 100%;
-    background: rgba(0,0,0,0.9);
-    z-index: 1000
+    background: black;
+    z-index: 1000;
+    text-align: center;
+    vertical-align: center;
 }
+#splashscreen img{
+    height: 90%;
+}
+
