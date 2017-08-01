@@ -49,6 +49,33 @@ document.addEventListener("turbolinks:load", function() {
     $("#mobile-trigger").click(smallmenu);  
     $("#mobile-trigger.active").click(closesmallmenu);   
     $(".menu-item").click(closesmallmenu); 
+    
+    if($(".aboutus li a.current-link").length == 1){
+        $("a[href^='/who-we-are']").parent().toggleClass("current-menu-item");
+        $("a[href^='/who-we-are']").toggleClass("current-link");
+
+        $("a[href^='/th/who-we-are']").parent().toggleClass("current-menu-item");
+        $("a[href^='/th/who-we-are']").toggleClass("current-link");
+    }
+    if($(".service li.active").length == 1){
+        $("a[href^='/what-we-do']").parent().toggleClass("current-menu-item");
+        $("a[href^='/what-we-do']").toggleClass("current-link");
+         $("a[href^='/th/what-we-do']").parent().toggleClass("current-menu-item");
+        $("a[href^='/th/what-we-do']").toggleClass("current-link");
+    }
+    if($(".portfolio li.active").length == 1){
+        $("a[href^='/projects']").parent().toggleClass("current-menu-item");
+        $("a[href^='/projects']").toggleClass("current-link");
+         $("a[href^='/th/projects']").parent().toggleClass("current-menu-item");
+        $("a[href^='/th/projects']").toggleClass("current-link");
+    }
+
+    if($(".article li.active").length == 1){
+        $("a[href^='/articles']").parent().toggleClass("current-menu-item");
+        $("a[href^='/articles']").toggleClass("current-link");
+         $("a[href^='/th/articles']").parent().toggleClass("current-menu-item");
+        $("a[href^='/th/articles']").toggleClass("current-link");
+    }
 
     if (sessionStorage.scrollTop != "undefined") {
         $(window).scrollTop(sessionStorage.scrollTop);
@@ -61,6 +88,8 @@ document.addEventListener("turbolinks:load", function() {
         $("#splashscreen").fadeOut("slow"); // you could also use $(this).fadeOut('slow');
         $("body").css("overflow", "auto");
     });
+
+
            
 });  
 

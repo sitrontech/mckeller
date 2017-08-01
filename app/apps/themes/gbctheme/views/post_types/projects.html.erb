@@ -6,7 +6,7 @@
 			<div class="col-sm-3 submenu col-xs-12">
 				<div class="tag "><%= t('projects')%></div>
 					<!-- / Categories -->
-					<ul>
+					<ul class="portfolio">
 						<li class="<%= activemenu == 'projects' ? 'active' : ''%> "><a href="<%=projects.the_url%>"><%=t('all')%></a>
 				        </li>
 						<% projects.the_categories.where.not(:name => "Uncategorized").decorate.each do |cat|%>

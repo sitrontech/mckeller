@@ -11,7 +11,7 @@
 						<%= t('services')%>
 					</div>
 					<!-- / Subpages -->
-					<ul>
+					<ul class="service">
 						<% services.the_posts.decorate.each do |service|%>
 
 			                <li class="<%= activemenu == service.the_slug ? 'active' : ''%> "><a href="<%=service.the_url%>"><%=service.the_title%></a>
