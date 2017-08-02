@@ -49,7 +49,9 @@ document.addEventListener("turbolinks:load", function() {
     $("#mobile-trigger").click(smallmenu);  
     $("#mobile-trigger.active").click(closesmallmenu);   
     $(".menu-item").click(closesmallmenu); 
-    
+    if($("#splashscreen").length == 1){
+        $('body').toggleClass("noscroll");
+    }
     if($(".aboutus li a.current-link").length == 1){
         $("a[href^='/who-we-are']").parent().toggleClass("current-menu-item");
         $("a[href^='/who-we-are']").toggleClass("current-link");
