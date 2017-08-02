@@ -5788,4 +5788,7 @@ img.desaturate {
 #splashscreen img{
     height: 90%;
 }
+.news img{
+    width: 100%;
+}
 

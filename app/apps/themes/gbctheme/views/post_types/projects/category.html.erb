@@ -22,7 +22,8 @@
 				<div class="projects ">
 
 					<% @category.the_posts.decorate.each_with_index do |project,index|%> 
-				        <div class="col-sm-6">
+				        <div class="item col-sm-6 col-md-6 col-xs-12" 
+				           style="<%= index.even? ? "clear:left": '' %>">
 							<img alt="<%=project.the_title%>" src="<%=project.the_thumb_url%>">
 							<h3>
 								<%=project.the_title%>
