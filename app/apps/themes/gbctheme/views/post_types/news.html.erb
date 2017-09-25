@@ -1,53 +1,47 @@
 <% mission = current_site.the_post("our-mission")%>
-<% profile = current_site.the_post("company-profile")%>
+<% newsHeadline = current_site.the_post("headline")%>
 <%  news = current_site.the_post_type("news")%>
 <div id="content" style="display: block;">
 	<!-- / Hompage -->
-	<div class="header-image" style="background-image:url(<%= profile.the_thumb_url %>); ">
+	<div class="header-image" style="background-image:url(<%= newsHeadline.the_thumb_url %>); ">
 	</div>
-	<div class="container" >
+	<div class="container pt-2" >
+
 		<div class="row">
-			<center  class="col-xs-12" itemprop="mainEntity" itemscope=""><h1><%=raw mission.the_meta("summary") %></h1>
-			</center>
 			
-		</div>
-		<div class="row">
-			<section>
 				<div class="col-xs-12 col-sm-3 submenu">
 					<div class="tag">
-						<%= t('aboutus')%>
+						<%= t('news')%>
 					</div>
-					<!-- / Subpages -->
-
-					<%= raw get_nav_menu('aboutusmenu', 'aboutus')%>
+					
 				</div>
 				<div class="col-xs-12  col-sm-9">
-					<% news.the_posts.decorate.each_with_index do |newsitem,index|%> 
+					<% news.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |newsitem,index|%> 
 		
-						<div class="job" id="mep_<%=index%>">
-							<div class="small job-date">
-								
-								
-							</div>
-							<a aria-controls="mep_<%=index%>" aria-expanded="false" class="job collapsed" data-toggle="collapse" href="#job_mep_<%=index%>" role="button">
-								<div class=" row" itemprop="about">
-                                 <div class="col-xs-12 col-sm-4 news"><%= image_tag newsitem.the_thumb_url %></div>
-								 <div class="col-xs-12 col-sm-8">
-								 <div class="small"><%= l(newsitem.the_field("news-date").to_date, format: t('date.formats.dateonly')) %></div>
-								 <%= newsitem.the_title %></div>
+						
 
-									
+						<div id="mem_<%=index%>" class="management-list <%= index == 0 ? 'pt-0': ''%>" id="mep_<%=index%>">
+							<a aria-controls="mem_<%=index%>" aria-expanded="false" class="management-member collapsed" data-toggle="collapse" href="#job_mem_<%=index%>" role="button">
+								<div class="row no-gutters">
+								<div class="col-6">
+									<img class="img-fluid" src="<%= newsitem.the_thumb_url%>" alt="<%= newsitem.the_title%>">
 								</div>
+								<div class="text col-6 align-self-center">
+									<h3><%= newsitem.the_title%></h3>
+									<span><%= l(newsitem.the_field("news-date").to_date, format: t('date.formats.dateonly')) %></span>
+								</div>
+							</div>
 							</a>
-							<div class="collapse" id="job_mep_<%=index%>" aria-expanded="false" style="height: 7px;">
+							<div class="collapse" id="job_mem_<%=index%>" aria-expanded="false" style="height: 7px;">
 								<div class="content">
 								  <%= raw newsitem.the_content  %>
 								</div>
 							</div>
 						</div>
+
 					<%end%>
 				</div>
-			</section>
+			
 		</div>
 	</div>
 </div>

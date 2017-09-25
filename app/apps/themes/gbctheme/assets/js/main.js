@@ -65,6 +65,7 @@ document.addEventListener("turbolinks:load", function() {
          $("a[href^='/th/what-we-do']").parent().toggleClass("current-menu-item");
         $("a[href^='/th/what-we-do']").toggleClass("current-link");
     }
+
     if($(".portfolio li.active").length == 1){
         $("a[href^='/projects']").parent().toggleClass("current-menu-item");
         $("a[href^='/projects']").toggleClass("current-link");

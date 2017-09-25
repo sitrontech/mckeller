@@ -2,11 +2,9 @@
 <% first = career.the_posts.where(:post_parent => nil)[0].decorate%>
 <div class="header-image" style="background-image:url(<%= first.the_thumb_url %>); ">
 </div>
-<div class="container">
+<div class="container pb-5 pt-2">
 
-	<div >
-		<br>
-		<section>
+	<div class="row">
 			<div class="col-sm-3">
 				<div class="tag"><%= first.the_meta("summary")%></div>
 				<a href="mailto:hr@mckeller.co.th">
@@ -14,36 +12,36 @@
 				<img alt="Send quary" width="100%" src="<%= first.the_field("small-photo")%>">
 				<%end%>
 				</a>
-				<br>
-				<br>
 			</div>
-			<div class="col-sm-9">
+			<div class="col-sm-9 joblist">
 				<h2><%= first.the_title%></h2>
 				<%= raw first.the_content%>
-				<br>
-				<br>
+
 				<% career.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |job,index|%> 
-		
-					<div class="job" id="mep_<%=index%>">
-						<div class="small job-date">
+					<a aria-controls="mep_<%=index%>" aria-expanded="false" class="job collapsed" data-toggle="collapse" href="#job_mep_<%=index%>" role="button">
+					<div class="job row" id="mep_<%=index%>">
+						<div class="col-8 pl-0">
+							
+								<div class="job-title" itemprop="about"><h2><%= job.the_title %></h2>
+
+									<p><%= job.the_field('location') %></p>
+								</div>
+							
+						</div>
+						<div class="small job-date col-4 pr-0 text-right ">
 							<%=  t('deadline') %>
 							<%= l(Date.parse(job.the_field('application-deadline')), format: t('date.formats.dateonly')) %>
 						</div>
-						<a aria-controls="mep_<%=index%>" aria-expanded="false" class="job collapsed" data-toggle="collapse" href="#job_mep_<%=index%>" role="button">
-							<div class="job-title" itemprop="about"><h2><%= job.the_title %></h2>
-
-								<p><%= job.the_field('location') %></p>
-							</div>
-						</a>
-						<div class="collapse" id="job_mep_<%=index%>" aria-expanded="false" style="height: 7px;">
+						
+					</div>
+					</a>
+					<div class="collapse mt-0" id="job_mep_<%=index%>" aria-expanded="false" style="height: 7px;">
 							<div class="content">
 							  <%= raw job.the_content  %>
 							</div>
 						</div>
-					</div>
 					<%end%>
 
 				</div>
-			</section>
 		</div>
 	</div>
