@@ -4,11 +4,13 @@
 
 <% popup = news.the_posts[0].decorate %>
 <% if popup.the_field("news-ispopup")== "1"%>
-    <div id="splashscreen">
-  
-     <a href="<%= aboutus.the_url%>" class="enter_link">
-     	<img src="<%= popup.the_thumb_url%>" /> 
-     </a>
-    </div>
+
+    <table id="splashscreen">
+	  <tr>
+	    <td><a href="<%= aboutus.the_url%>" class="enter_link ">
+		     	<img class="img-fluid mx-auto d-block" src="<%= popup.the_thumb_url%>" /> 
+		     </a></td>
+	  </tr>
+	</table>
 <%end%>
 

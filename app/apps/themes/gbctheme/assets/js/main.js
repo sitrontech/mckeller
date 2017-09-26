@@ -38,10 +38,12 @@ window.addEventListener("scroll", function() {
 // mobile menu
 var closesmallmenu = function(){
     $("#router nav").removeClass("show");
+    $("#languages").removeClass("show");
     $("#mobile-trigger.active").removeClass("active").click(smallmenu);
 }
 var smallmenu = function(){
             $("#router nav").addClass("show");
+            $("#languages").addClass("show");
             $("#mobile-trigger").addClass("active").click(closesmallmenu);
         };
 
