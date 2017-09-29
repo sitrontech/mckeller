@@ -30,6 +30,7 @@ en:
       default: '%H:%m'
   aboutus: "About Us"
   services: "Services"
+  jobs: "Jobs"
   company: "Company"
   projectss: "Projects"
   ourreferences: "Our references"

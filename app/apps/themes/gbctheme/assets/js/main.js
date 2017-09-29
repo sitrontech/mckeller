@@ -37,13 +37,13 @@ window.addEventListener("scroll", function() {
 
 // mobile menu
 var closesmallmenu = function(){
-    $("#router nav").removeClass("show");
-    $("#languages").removeClass("show");
+    $("#router nav").removeClass("show col-6 p-0");
+    $("#languages").removeClass("show col-6 ");
     $("#mobile-trigger.active").removeClass("active").click(smallmenu);
 }
 var smallmenu = function(){
-            $("#router nav").addClass("show");
-            $("#languages").addClass("show");
+            $("#router nav").addClass("show col-6 p-0");
+            $("#languages").addClass("show col-6 ");
             $("#mobile-trigger").addClass("active").click(closesmallmenu);
         };
 

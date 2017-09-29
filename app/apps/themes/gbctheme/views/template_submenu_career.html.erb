@@ -1,0 +1,23 @@
+<% career = current_site.the_post_type("career")%>
+<% first = career.the_posts.where(:post_parent => nil)[0].decorate%>
+<div class="header-image" style="background-image:url(<%= first.the_thumb_url %>); ">
+</div>
+<div class="container pb-3 pt-4">
+
+	<div class="row">
+
+			<div class="col-xs-12 col-md-3 submenu">
+					<div class="tag">
+						<%= t('job')%>
+					</div>
+
+					<!-- / Subpages -->
+
+					<%= raw get_nav_menu('careermenu', 'work-for-mckeller')%>
+			</div>
+			<div class="col-12  col-md-9 joblist">
+			
+				<%= raw @post.the_content %>	
+			</div>
+	</div>
+</div>

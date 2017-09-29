@@ -31,8 +31,8 @@
                             <a id="logo"  href="<%= current_site.the_url %>"><%= image_tag current_site.the_logo, class: "img-fluid" %></a>
                         </div>
                         <div class="col-3">
-                            <div  class="languagesblock orator text-right">
-                                    <ul id="languages" class="languages ">
+                            <div  class="languagesblock orator text-right ">
+                                    <ul id="languages" class="languages  ">
                                             <%=locale_link "TH",url_for( :locale => 'th' ),:th%>
                                             <span class="spacer">
                                                 |
@@ -49,7 +49,7 @@
                     <span></span>
                 </div>
             </div>
-            <nav class="text-center">
+            <nav class="text-center ">
                  <%= raw get_nav_menu('main_menu', 'roots orator')%>      
             </nav>
         </div>
