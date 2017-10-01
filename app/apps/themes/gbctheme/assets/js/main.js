@@ -33,7 +33,10 @@ window.addEventListener("scroll", function() {
     var t, e, n, i, r;
     n=window.pageYOffset||document.documentElement.scrollTop, r=150, e=$("#router"), n>r?e.hasClass("smaller")||e.addClass("smaller"): e.hasClass("smaller")&&e.removeClass("smaller"), i=50, t=$("#mobile-trigger"), n>i?t.hasClass("top")||t.addClass("top"):t.hasClass("top")&&t.removeClass("top");
      sessionStorage.scrollTop = $(this).scrollTop();
+    
 });
+
+
 
 // mobile menu
 var closesmallmenu = function(){
@@ -67,19 +70,28 @@ document.addEventListener("turbolinks:load", function() {
          $("a[href^='/th/what-we-do']").parent().toggleClass("current-menu-item");
         $("a[href^='/th/what-we-do']").toggleClass("current-link");
     }
+     if($(".portfolio li.active").length == 1){
+        $("a[href^='/projects']").parent().addClass("current-menu-item");
+        $("a[href^='/projects']").addClass("current-link");
+         $("a[href^='/th/projects']").parent().addClass("current-menu-item");
+        $("a[href^='/th/projects']").addClass("current-link");
+    }else{
 
-    if($(".portfolio li.active").length == 1){
-        $("a[href^='/projects']").parent().toggleClass("current-menu-item");
-        $("a[href^='/projects']").toggleClass("current-link");
-         $("a[href^='/th/projects']").parent().toggleClass("current-menu-item");
-        $("a[href^='/th/projects']").toggleClass("current-link");
     }
+   
 
     if($(".article li.active").length == 1){
         $("a[href^='/articles']").parent().toggleClass("current-menu-item");
         $("a[href^='/articles']").toggleClass("current-link");
          $("a[href^='/th/articles']").parent().toggleClass("current-menu-item");
         $("a[href^='/th/articles']").toggleClass("current-link");
+    }
+    if($(".career li a.current-link").length == 1){
+        $("a[href^='/career']").parent().toggleClass("current-menu-item");
+        $("a[href^='/career']").toggleClass("current-link");
+
+        $("a[href^='/th/career']").parent().toggleClass("current-menu-item");
+        $("a[href^='/th/career']").toggleClass("current-link");
     }
 
     if (sessionStorage.scrollTop != "undefined") {
@@ -95,8 +107,13 @@ document.addEventListener("turbolinks:load", function() {
     });
 
 
+
+
            
-});  
+}); 
+
+
+
 
 
 

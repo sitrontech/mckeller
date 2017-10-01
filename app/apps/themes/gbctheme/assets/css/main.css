@@ -80,7 +80,7 @@ p {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
+    height: 100vh;
     width: 100%;
     padding: 0;
     margin: 0;
@@ -272,7 +272,7 @@ p {
     height: 100%;
     color: #07167D;
 }
-.submenu ul.aboutus li.current-menu-item a,
+.submenu ul li.current-menu-item a,
 .submenu ul li a:active, 
 .submenu ul li a:visited, 
 .submenu ul li a:focus, 
@@ -280,20 +280,20 @@ p {
     text-decoration: none;
 }
 .submenu ul li.active ,
-ul.aboutus li.current-menu-item a{
+ul li.current-menu-item a{
     border-left: 2px solid rgba(0, 25, 179, 0.3);
 }
 .submenu ul li.active a,
-ul.aboutus li.current-menu-item a {
+ul li.current-menu-item a {
     padding: 2px 7px;
     color: black;
 }
 .submenu ul li.active:hover,
-ul.aboutus li.current-menu-item a:hover {
+ul li.current-menu-item a:hover {
     border-left: 2px solid rgba(0, 7, 51, 0.3);
 }
 .submenu ul li:hover
-ul.aboutus li a:hover {
+ul li a:hover {
     border-left: 2px solid rgba(0, 7, 51, 0.3);
 }
 .submenu ul li:hover a,
