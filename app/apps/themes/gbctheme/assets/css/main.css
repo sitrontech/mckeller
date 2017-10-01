@@ -280,7 +280,7 @@ p {
     text-decoration: none;
 }
 .submenu ul li.active ,
-ul li.current-menu-item a{
+.submenu ul li.current-menu-item a{
     border-left: 2px solid rgba(0, 25, 179, 0.3);
 }
 .submenu ul li.active a,
@@ -687,7 +687,7 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
         margin-top:65px;
     }
     h1, .h1 {
-        font-size: 1.8em;
+        font-size: 1.4em;
     }
     .container{
         /*width: 700px;*/
