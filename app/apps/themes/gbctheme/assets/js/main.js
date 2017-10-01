@@ -75,8 +75,6 @@ document.addEventListener("turbolinks:load", function() {
         $("a[href^='/projects']").addClass("current-link");
          $("a[href^='/th/projects']").parent().addClass("current-menu-item");
         $("a[href^='/th/projects']").addClass("current-link");
-    }else{
-
     }
    
 
