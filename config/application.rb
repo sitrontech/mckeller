@@ -14,8 +14,6 @@ module Mckeller
   	config.active_record.belongs_to_required_by_default = false
   	config.time_zone = 'Bangkok'
  	config.active_record.default_timezone = :local
- 	MiniMagick.configure do |config|
-	  config.validate_on_create = false
-	end
+ 	
   end
 end
