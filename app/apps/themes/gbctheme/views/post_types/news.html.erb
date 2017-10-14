@@ -23,10 +23,10 @@
 						<div id="mem_<%=index%>" class="management-list <%= index == 0 ? 'pt-0': ''%>" id="mep_<%=index%>">
 							<a aria-controls="mem_<%=index%>" aria-expanded="false" class="management-member collapsed" data-toggle="collapse" href="#job_mem_<%=index%>" role="button">
 								<div class="row no-gutters">
-								<div class="col-6">
+								<div class="col-4">
 									<img class="img-fluid" src="<%= newsitem.the_thumb_url%>" alt="<%= newsitem.the_title%>">
 								</div>
-								<div class="text col-6 align-self-center">
+								<div class="text col-8 align-self-center">
 									<h3><%= newsitem.the_title%></h3>
 									<span><%= l(newsitem.the_field("news-date").to_date, format: t('date.formats.dateonly')) %></span>
 								</div>
