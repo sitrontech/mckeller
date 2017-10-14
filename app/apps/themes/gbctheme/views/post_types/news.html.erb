@@ -16,6 +16,7 @@
 					
 				</div>
 				<div class="col-xs-12  col-sm-9">
+				    <%= raw newsHeadline.the_content %>
 					<% news.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |newsitem,index|%> 
 		
 						
