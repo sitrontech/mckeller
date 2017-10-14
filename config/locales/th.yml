@@ -22,8 +22,8 @@
 th:
   date:
     formats:
-      default: '%d %^B %Y %H:%M'
-      dateonly: '%d %^B %Y'
+      default: '%d %^b %Y %H:%M'
+      dateonly: '%d %^b %Y'
       short: '%d-%m-%y'
   time:
     formats:
