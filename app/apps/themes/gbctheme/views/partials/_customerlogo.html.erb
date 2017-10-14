@@ -6,7 +6,7 @@
 			<h3><%= logos.the_posts.where(:post_parent => nil)[0].decorate.the_title %></h3>
 			<div class="row">
 					<% logos.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |logo,index|%>
-						<div class="col-4 col-xs-4 col-sm-2">
+						<div class="col-4 col-xs-4 col-sm-2 block">
 					
 							<%if logo.the_field("logo-location") == "1" %>
 							<div class="responsive-container">
