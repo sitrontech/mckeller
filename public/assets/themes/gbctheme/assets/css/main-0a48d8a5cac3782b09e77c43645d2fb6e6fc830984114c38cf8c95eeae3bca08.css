@@ -1,5 +1,6 @@
 
 /* ---------- Font -------------*/
+
 @import url('https://fonts.googleapis.com/css?family=Didact+Gothic');
 @import url('https://fonts.googleapis.com/css?family=Prompt:300,700&subset=thai');
 @import url('https://fonts.googleapis.com/css?family=Droid+Sans');
@@ -23,12 +24,10 @@
 
 * {
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 *:before, *:after {
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
     box-sizing: border-box;
 }
 html {
@@ -124,9 +123,6 @@ p {
 .header-image {
     position: relative;
     width: 100%;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
     background-size: cover;
     background-position: center;
     margin-bottom: 15px;
@@ -156,11 +152,9 @@ p {
     
     z-index: 999;
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     background-color: rgba(255, 255, 255, 0.95);
     -webkit-box-shadow: 0px 2px 16px 0px rgba(255, 255, 255, 0);
-    -moz-box-shadow: 0px 2px 16px 0px rgba(255, 255, 255, 0);
     box-shadow: 0px 2px 16px 0px rgba(255, 255, 255, 0);
 }
 #router .container {
@@ -168,7 +162,6 @@ p {
 }
 #router #logo {
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     display: inline-block;
     line-height: 95px;
@@ -177,6 +170,7 @@ p {
     width: 290px;
 }
 #router #magic-line {
+    -webkit-transition: height 0.3s ease,  bottom 0.3s ease,  background-color 0.3s ease;
     transition: height 0.3s ease,  bottom 0.3s ease,  background-color 0.3s ease;
     list-style: none;
     position: absolute;
@@ -202,7 +196,6 @@ p {
 #router ul.languages li {
     line-height: 30px;
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     display: inline-block;
 }
@@ -232,7 +225,6 @@ p {
 }
 #router nav ul li {
     -webkit-transition: all 0.3s ease;
-    -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
     display: inline-block;
     border-left: 1px solid white
@@ -501,7 +493,8 @@ footer a.social i {
 }
 
 img.desaturate {
-    filter: grayscale(100%) invert(1);
+    -webkit-filter: grayscale(100%) invert(1);
+            filter: grayscale(100%) invert(1);
 }
 .responsive-container {
     position: relative;
@@ -766,7 +759,8 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
     }
     #router {
 		height: 65px;
-		box-shadow: 3px 1px 1px #888888;
+		-webkit-box-shadow: 3px 1px 1px #888888;
+		        box-shadow: 3px 1px 1px #888888;
 	}
 	#router.smaller{
 		height: 75px;
@@ -787,12 +781,8 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
 
 	#router #mobile-trigger {
     -webkit-transform: rotate(0deg);
-    -moz-transform: rotate(0deg);
-    -o-transform: rotate(0deg);
     transform: rotate(0deg);
     -webkit-transition: 0.5s ease-in-out;
-    -moz-transition: 0.5s ease-in-out;
-    -o-transition: 0.5s ease-in-out;
     transition: 0.5s ease-in-out;
     cursor: pointer;
     width: 50px;
@@ -817,12 +807,8 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
 	    background: white;
 	    opacity: 1;
 	    -webkit-transform: rotate(0deg);
-	    -moz-transform: rotate(0deg);
-	    -o-transform: rotate(0deg);
 	    transform: rotate(0deg);
 	    -webkit-transition: 0.25s ease-in-out;
-	    -moz-transition: 0.25s ease-in-out;
-	    -o-transition: 0.25s ease-in-out;
 	    transition: 0.25s ease-in-out;
 	}
 	#router #mobile-trigger span:nth-child(1) {
@@ -842,16 +828,12 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
 	#router #mobile-trigger.active span:nth-child(1) {
 	    top: 10px;
 	    -webkit-transform: rotate(45deg);
-	    -moz-transform: rotate(45deg);
-	    -o-transform: rotate(45deg);
 	    transform: rotate(45deg);
 	     position: absolute;
 	}
 	#router #mobile-trigger.active span:nth-child(3) {
 	    top: 10px;
 	    -webkit-transform: rotate(-45deg);
-	    -moz-transform: rotate(-45deg);
-	    -o-transform: rotate(-45deg);
 	    transform: rotate(-45deg);
 	     position: absolute;
 	}
@@ -867,7 +849,6 @@ a.job:active, a.job:visited, a.job:focus, a.job:link {
         padding-right: 0px;
 
         -webkit-transition: left 0.5s ease;
-        -o-transition: left 0.5s ease;
         transition: left 0.5s ease;
         position: fixed;
        
