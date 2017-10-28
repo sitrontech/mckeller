@@ -28,7 +28,7 @@
 									<img class="img-fluid" src="<%= newsitem.the_thumb_url%>" alt="<%= newsitem.the_title%>">
 								</div>
 								<div class="text col-xs-12 col-sm-8 align-self-center pt-3">
-									<h3><%= newsitem.the_title%></h3>
+									<p><%= newsitem.the_title%></p>
 									<span><%= l(newsitem.the_field("news-date").to_date, format: t('date.formats.dateonly')) %></span>
 								</div>
 							</div>
