@@ -12,7 +12,7 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
+
 //= require social-share-button
 //= require tether
 //= require bootstrap
