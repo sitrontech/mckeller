@@ -8,7 +8,7 @@
 			<div class="tag"><%= t('articles')%></div>
 	
 				<!-- / Subpages -->
-					<ul class="article" style="margin-top: 49px;">
+					<ul class="article" >
 						<%  @post.the_post_type.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |submenu,index|%> 
 					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
 					   <%end%>
