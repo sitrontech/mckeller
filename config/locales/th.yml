@@ -50,6 +50,7 @@ th:
     google_plus: "google +"
     twitter: "Twitter"
     email: "อีเมลล์"
+  back: "กลับสู่หน้าบทความ"
   camaleon_cms:
     admin.login:
       please_login: "กรุณาล๊อคอิน"

@@ -49,8 +49,9 @@ var smallmenu = function(){
             $("#mobile-trigger").addClass("active").click(closesmallmenu);
         };
 
-document.addEventListener("turbolinks:load", function() { 
-// document.on('ready page:load',function() {    
+// document.addEventListener("turbolinks:load", function() { 
+$( document ).ready(function() {
+       
     $("#mobile-trigger").click(smallmenu);  
     $("#mobile-trigger.active").click(closesmallmenu);   
     $(".menu-item").click(closesmallmenu); 
