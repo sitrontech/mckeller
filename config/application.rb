@@ -14,6 +14,7 @@ module Mckeller
   	config.active_record.belongs_to_required_by_default = false
   	config.time_zone = 'Bangkok'
  	config.active_record.default_timezone = :local
+ 	config.i18n.default_locale = :'th'
  	
   end
 end
