@@ -24,10 +24,10 @@
 						<div id="mem_<%=index%>" class="management-list <%= index == 0 ? 'pt-0': ''%>" id="mep_<%=index%>">
 							<a aria-controls="mem_<%=index%>" aria-expanded="false" class="management-member collapsed" data-toggle="collapse" href="#job_mem_<%=index%>" role="button">
 								<div class="row no-gutters">
-								<div class="col-xs-12 col-sm-4">
+								<div class="col-xs-12 col-md-6 col-lg-4">
 									<img class="img-fluid" src="<%= newsitem.the_thumb_url%>" alt="<%= newsitem.the_title%>">
 								</div>
-								<div class="text col-xs-12 col-sm-8 align-self-center pt-3">
+								<div class="text col-xs-12 col-md-6 col-lg-8 align-self-center pt-3">
 									<p><%= newsitem.the_title%></p>
 									<span><%= l(newsitem.the_field("news-date").to_date, format: t('date.formats.dateonly')) %></span>
 								</div>

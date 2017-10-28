@@ -14,7 +14,7 @@
 
 				<% articles.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |article,index|%> 
 					<div class="job row" id="mep_havac_cad_engineer">
-						<div class="col-9 pl-0">
+						<div class="col-xs-12 col-lg-9 pl-0">
 						<a aria-controls="mep_havac_cad_engineer" aria-expanded="false" class="job" href="<%= article.the_url%>" role="button">
 							<div class="job-title" itemprop="about">
 								<h2><%= article.the_title %></h2>
@@ -22,7 +22,7 @@
 							</div>
 						</a>
 						</div>
-						<div class="small job-date col-3 pr-0 text-right align-text-bottom">
+						<div class="small job-date col-xs-12  col-lg-3 pr-0 text-right align-text-bottom">
 							<%= l(article.updated_at, format: t('date.formats.dateonly')) %>
 							
 						</div>
