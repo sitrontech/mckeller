@@ -73,7 +73,7 @@ h1, .h1 {
     line-height: 1.5;
 }
 h2, .h2 {
-    font-size: 1em;
+    font-size: 1.1em;
 }
 h3, .h3 {
     font-size: 1em;
@@ -133,11 +133,11 @@ p {
     height: 461px;
 }
 .motto{
-    margin: 45px 0;
+    margin: 32px 0;
 }
 .motto h1{
     font-size: 2em;
-    line-height: 1.5;
+    line-height: 1.1;
     color:#5B5B5B;
 }
 .container{
@@ -225,7 +225,7 @@ p {
 #router nav ul {
     margin: 0;
     list-style: none;
-    padding: 8px 0px;
+    padding: 7px 0px;
 }
 #router nav ul.roots {
 	background-color: #506270;
@@ -338,7 +338,7 @@ ul li:hover a {
     background-color: #081D7A;
     color: white;
     text-align: left;
-    line-height: 37px;
+    line-height: 40px;
     padding: 0px 9px;
     margin-bottom: 22.5px;
     border-top-left-radius: 6px;
@@ -409,7 +409,7 @@ footer ul.links li:before {
     font-family: "FontAwesome";
     font-size: 9px;
     float: left;
-    margin-top: 9px;
+    margin-top: 7px;
     margin-left: -15px;
     color: #CCCCCC;
 }
@@ -612,7 +612,7 @@ a.management-member{
 }
 
 .job .job-date {
-    line-height: 3;
+    line-height: 2.5;
     
 }
 .joblist a{
@@ -734,7 +734,7 @@ ul.article{
 
      .header-image {
 
-        height: 321px;
+        height: 349px;
     }
 
 }
@@ -994,6 +994,7 @@ ul.article{
 
         height: 219px;
     }
+
 }
 @media (max-width:480px)  { /* smartphones, Android phones, landscape iPhone */ 
 	body{

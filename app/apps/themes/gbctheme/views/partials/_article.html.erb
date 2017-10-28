@@ -4,17 +4,19 @@
 <div class="container pt-5 pb-4">
 	<div class="row">
 
-			<div class="col-xs-12 col-sm-3 submenu">
-			<div class="tag"><%= t('articles')%></div>
-	
-				<!-- / Subpages -->
+<!-- 			<div class="col-xs-12 col-sm-3 submenu">
+				<div class="tag">
+					<%= t('articles')%>
+				</div>
+				 / Subpages 
 					<ul class="article" >
 						<%  @post.the_post_type.the_posts.where.not(:post_parent => nil).decorate.each_with_index do |submenu,index|%> 
 					   			<li class="<%=  @post.the_slug == submenu.the_slug ? 'active' : ''%> "><a  href="<%= submenu.the_url%>"><%=submenu.the_title%></a></li>
 					   <%end%>
 					</ul>
-			</div>
-			<div class="col-xs-12 col-sm-9 articlecontainer">
+			</div> -->
+
+			<div class="col-xs-12  articlecontainer">
 				<h2>
 				<div class="row">
 				<div class="col-9"> <%= @post.the_title%></div>
