@@ -12,7 +12,7 @@
 }
 @font-face {
   font-family: "DBHeavent";
-  src: url(../fonts/DB-Heavent-Li.ttf) format("truetype");
+  src: url(../fonts/DB-Heavent-Li3_2.ttf) format("truetype");
   
 }
 .orator{
@@ -404,7 +404,7 @@ footer ul.links li:before {
     font-family: "FontAwesome";
     font-size: 9px;
     float: left;
-    margin-top: 9px;
+    margin-top: 8px;
     margin-left: -15px;
     color: #CCCCCC;
 }
@@ -675,18 +675,18 @@ ul.article{
     width: 100% !important;
     height: 250px !important;
 }
-.info .contact input.form-control:nth-child(n+4){
+.info .contact input.form-control.in:nth-child(n+4){
     width: 49.3%;
     float: left;
     margin: 5px;
 }
-.info .contact input.form-control:nth-child(even){
+.info .contact input.form-control.in:nth-of-type(even){
     margin-left: 0;
 }
-.info .contact input.form-control:nth-child(odd){
+.info .contact input.form-control.in:nth-of-type(odd){
     margin-right: 0;
 }
-.info .contact input.form-control:nth-child(7){
+.info .contact input.form-control.in:nth-child(7){
     margin-bottom: 10px;
 }
 
@@ -732,7 +732,7 @@ ul.article{
 
      .header-image {
 
-        height: 330px;
+        height: 347px;
     }
     footer ul.links li:before {
        
@@ -763,8 +763,11 @@ ul.article{
         height: 357px;
     }
     .info .contact input.form-control:nth-child(n+4){
-        margin: -2px 0px;
-        width: 100%;
+        margin: -2px 0px !important;
+        width: 100% !important;
+    }
+    .tag{
+        margin-bottom:17.5px;
     }
 
 
@@ -986,12 +989,24 @@ ul.article{
     .office-info{
         height: auto;
     }
+    .job-date {
+        display: none;
+    }
+    .submenu{
+        margin-bottom: 0px;
+    }
    
 }
 @media (max-width:670px)  { /* portrait tablets, portrait iPad, e-readers (Nook/Kindle), landscape 800x480 phones (Android) */ 
      .header-image {
 
-        height: 219px;
+        height: 192px;
+    }
+    .motto h1{
+        font-size:1.15em;
+    }
+    .fa{
+        font-size: 16px
     }
 
 }
@@ -1009,8 +1024,8 @@ ul.article{
         height: 235px;
     }
     .motto h1{
-        font-size: 1.5em;
-        line-height: 1;
+        font-size: 1.3em;
+        line-height: 1.2;
     }
     h1, .h1 {
         font-size: 1.5em;
@@ -1051,9 +1066,7 @@ ul.article{
     #router  ul.languages{
         width: 55%;
     }
-    .submenu{
-        margin-bottom: 0px;
-    }
+ 
 
     .address-info {
         padding:  25px ;
@@ -1067,12 +1080,20 @@ ul.article{
             height: inherit;
     }
     .management-member .text h3{
-        font-size: 1em;
+        font-size: 1.4em;
+    }
+    .article img{
+        margin-bottom: 5px;
+    }
+    #router nav ul.roots li a{
+        font-size: 0.95em;
     }
 }
 @media (max-width:320px)  { /* smartphones, portrait iPhone, portrait 480x320 phones (Android) */ 
    
-
+    .customerlogo h3{
+        font-size: 0.7em;
+    }
     .header-image {
 
         height: 176px;
@@ -1095,6 +1116,7 @@ ul.article{
     footer .copyright{
         font-size: 0.6em;
     }
+
 
 }
 
