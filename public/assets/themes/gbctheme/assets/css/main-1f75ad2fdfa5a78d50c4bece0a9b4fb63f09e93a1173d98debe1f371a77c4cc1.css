@@ -12,7 +12,7 @@
 }
 @font-face {
   font-family: "DBHeavent";
-  src: url(../fonts/DB-Heavent-Li.ttf) format("truetype");
+  src: url(../fonts/DB-Heavent-Li3_2_1.ttf) format("truetype");
   
 }
 .orator{
@@ -675,18 +675,18 @@ ul.article{
     width: 100% !important;
     height: 250px !important;
 }
-.info .contact input.form-control:nth-child(n+4){
+.info .contact input.form-control.in:nth-child(n+4){
     width: 49.3%;
     float: left;
     margin: 5px;
 }
-.info .contact input.form-control:nth-child(even){
+.info .contact input.form-control.in:nth-of-type(even){
     margin-left: 0;
 }
-.info .contact input.form-control:nth-child(odd){
+.info .contact input.form-control.in:nth-of-type(odd){
     margin-right: 0;
 }
-.info .contact input.form-control:nth-child(7){
+.info .contact input.form-control.in:nth-child(7){
     margin-bottom: 10px;
 }
 
@@ -763,8 +763,8 @@ ul.article{
         height: 357px;
     }
     .info .contact input.form-control:nth-child(n+4){
-        margin: -2px 0px;
-        width: 100%;
+        margin: -2px 0px !important;
+        width: 100% !important;
     }
     .tag{
         margin-bottom:17.5px;
