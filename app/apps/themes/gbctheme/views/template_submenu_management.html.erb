@@ -31,11 +31,14 @@
 							</div>
 						</div>
 						</a>
-						<div class="collapse" id="manage_mem_<%=index%>" aria-expanded="false" style="height: 7px;">
-							<div class="content">
-							  <%= raw m.the_content  %>
+						
+						<% if m.the_content != "<p>#</p>" %>
+							<div class="collapse" id="manage_mem_<%=index%>" aria-expanded="false" style="height: 7px;">
+								<div class="content">
+								  <%= raw m.the_content  %>
+								</div>
 							</div>
-						</div>
+						<%end%>
 					</div>
 					<%end%>
 				</div>
