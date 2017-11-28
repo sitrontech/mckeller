@@ -1,9 +1,10 @@
 <% news = current_site.the_post_type("news")%>
 <% aboutus = current_site.the_post_type("who-we-are")%>
-
+<% mission = current_site.the_post("our-mission")%>
+<% profile = current_site.the_post("company-profile")%>
 
 <% popup = news.the_posts[0].decorate %>
-<% if popup.the_field("news-ispopup")== "1"%>
+<% if popup.the_field("news-ispopup") == "1"%>
 
     <table id="splashscreen">
 	  <tr>
@@ -13,5 +14,32 @@
 		</td>
 	  </tr>
 	</table>
+<%else%>
+<div id="content" style="display: block;">
+	<!-- / Hompage -->
+	<div class="header-image" style="background-image:url(<%= profile.the_thumb_url %>); ">
+	</div>
+	<div class="container" >
+		<div class="motto">
+			<center  class="col-12" itemprop="mainEntity" itemscope=""><h1><%=raw mission.the_meta("summary") %></h1>
+			</center>
+			
+		</div>
+		<div class="row pb-3">
+			
+				<div class="col-xs-12 col-md-3 submenu">
+					<div class="tag">
+						<%= t('aboutus')%>
+					</div>
+					<!-- / Subpages -->
+					<%= raw get_nav_menu('aboutusmenu', 'aboutus')%>
+				</div>
+				<div class="col-xs-12  col-md-9">
+					<%= raw profile.the_content %>
+				</div>
+			
+		</div>
+	</div>
+</div>
 <%end%>
 

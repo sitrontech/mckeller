@@ -70,9 +70,9 @@ $( document ).ready(function() {
         $("a[href^='/what-we-do']").toggleClass("current-link");
          $("a[href^='/th/what-we-do']").parent().toggleClass("current-menu-item");
         $("a[href^='/th/what-we-do']").toggleClass("current-link");
-        if (sessionStorage.scrollTop != "undefined") {
-            $(window).scrollTop(350);
-        }
+        // if (sessionStorage.scrollTop != "undefined") {
+        //     $(window).scrollTop(350);
+        // }
     }
      if($(".portfolio li.active").length == 1){
         $("a[href^='/projects']").parent().addClass("current-menu-item");

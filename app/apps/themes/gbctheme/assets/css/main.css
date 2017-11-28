@@ -776,6 +776,9 @@ ul.article{
     .tag{
         margin-bottom:17.5px;
     }
+      .office-info{
+            height: inherit;
+    }
 
 
 }
