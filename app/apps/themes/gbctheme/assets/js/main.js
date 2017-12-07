@@ -24,8 +24,8 @@ if (window.sidebar){
     document.onclick=reEnable;
 }
 // disable right click
-// function blockContextMenu (evt) { evt.preventDefault();};
-// window.addEventListener('contextmenu', blockContextMenu);
+function blockContextMenu (evt) { evt.preventDefault();};
+window.addEventListener('contextmenu', blockContextMenu);
 
 // small header
 window.addEventListener("scroll", function() {

@@ -10,7 +10,7 @@
 					<ul class="portfolio">
 						<li class="<%= activemenu == 'projects' ? 'active' : ''%> "><a href="<%=projects.the_url%>"><%=t('all')%></a>
 				        </li>
-						<% projects.the_categories.where.not(:name => "Uncategorized").decorate.each do |cat|%>
+						<% projects.the_categories.where.not(:name => "Uncategorized").decorate.sort_by{|a| a.updated_at}.each  do |cat|%>
 
 				           <li class="<%= activemenu == cat.the_slug ? 'active' : ''%> "><a href="<%=cat.the_url%>"><%=cat.the_title%></a>
 				                </li>
